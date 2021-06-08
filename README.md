@@ -10,7 +10,7 @@ Here are some ideas to get you started:
 - 👯 I’m looking to collaborate on the official rust crates.io
 - 🤔 I’m looking for help with nun really..😁
 - 💬 Ask me about what I ate today
-- 📫 How to reach me: [https://wa.me/237672270627]WhatsApp
+- 📫 How to reach me: [WhatsApp](https://wa.me/237672270627)
 - 😄 Pronouns: He
 - ⚡ Fun fact: everything is just an illusion 😒 reality is often disappointing 😶 fun is what you want it to be
 -->
