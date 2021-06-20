@@ -6,6 +6,15 @@
 <p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=elroykanye" alt="elroykanye" /></a> </p>
 
 <p align="center"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
+<ul>
+  <li>🔭 I’m currently working on <b>LMS for my school<b></li>
+    <li>🌱 I’m currently learning </b>Spring, Xamarin, SKLearn</b></li>
+  <li>👯 I’m looking to collaborate on **the Rust Crates.io**<b></b></li>
+  <li>🤝 I’m looking for help with **Rust WebAssembly**<b></b></li>
+  <li>💬 Ask me about **JSP/Servlets, Hibernate, Django, SciPy**<b></b></li>
+  <li>📫 How to reach me **elroykanye@gmail.com**<b></b></li>
+  <li>⚡ Fun fact **Eru is a delusional dish**<b></b></li>
+</ul>
 
 - 🔭 I’m currently working on **LMS for my school**
 
