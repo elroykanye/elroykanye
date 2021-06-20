@@ -1,27 +1,25 @@
-### Hi there 👋
-
-<!--
-**elroykanye/elroykanye** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
--->
-- 🔭 I’m currently working on a school management system
-- 🌱 I’m currently learning xamarin, SKLearn, spring, Hibernate, rust webassembly, django
-- 👯 I’m looking to collaborate on the official rust crates.io
-- 🤔 I’m looking for help with nun really..😁
-- 💬 Ask me about what I ate today
-- 📫 How to reach me: [WhatsApp](https://wa.me/237672270627)
-- 😄 Pronouns: He
-- ⚡ Fun fact: everything is just an illusion 😒 reality is often disappointing 😶 fun is what you want it to be
-
-
-<h3 align="center">A psycho dev from Jupyter</h3>
+<h1 align="center">Hi 👋, I'm Elroy Kanye</h1>
+<h3 align="center">Psycho dev from Jupyter</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p>
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=elroykanye" alt="elroykanye" /></a> </p>
 
 <p align="left"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
+
+- 🔭 I’m currently working on **LMS for my school**
+
+- 🌱 I’m currently learning **Spring, Xamarin, SKLearn**
+
+- 👯 I’m looking to collaborate on **the Rust Crates.io**
+
+- 🤝 I’m looking for help with **Rust WebAssembly**
+
+- 💬 Ask me about **JSP/Servlets, Hibernate, Django, SciPy**
+
+- 📫 How to reach me **elroykanye@gmail.com**
+
+- ⚡ Fun fact **Eru is a delusional dish**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
