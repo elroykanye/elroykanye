@@ -6,7 +6,7 @@
 <p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=elroykanye" alt="elroykanye" /></a> </p>
 
 <p align="center"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
-<p align="center">
+
 - 🔭 I’m currently working on **LMS for my school**
 
 - 🌱 I’m currently learning **Spring, Xamarin, SKLearn**
@@ -20,7 +20,7 @@
 - 📫 How to reach me **elroykanye@gmail.com**
 
 - ⚡ Fun fact **Eru is a delusional dish**
-</p>
+
 <h3 align="center">Connect with me:</h3>
 <p align="center">
 <a href="https://dev.to/elroykanye" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/dev-dot-to.svg" alt="elroykanye" height="30" width="40" /></a>
