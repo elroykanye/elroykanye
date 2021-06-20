@@ -1,4 +1,5 @@
-<h1 align="center">Hi 👋, I'm Elroy Kanye</h1>
+<h1 align="center">Hi 👋, I'm Elroy Kanye 🤓</h1>
+<h2 align="center">☕👨🏾‍💻🤓😊😂😃🥺😁😶😯😒🤗👨🏾‍💻☕</h2>
 <h3 align="center">Psycho dev from Jupyter</h3>
 
 <p align="center"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p>
