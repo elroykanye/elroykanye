@@ -13,3 +13,7 @@ Here are some ideas to get you started:
 - 📫 How to reach me: [WhatsApp](https://wa.me/237672270627)
 - 😄 Pronouns: He
 - ⚡ Fun fact: everything is just an illusion 😒 reality is often disappointing 😶 fun is what you want it to be
+
+
+[![Kanye2.0's github stats](https://github-readme-stats.vercel.app/api?username=elroykanye&show_icons=true&theme=radical)](https://github.com/elroykanye/github-readme-stats)  
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=elroykanye&show_icons=true&theme=radical&layout=compact)](https://github.com/elroykanye/github-readme-stats)
