@@ -18,13 +18,13 @@
 <p align="center"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
 
 <p align="center">
-  <h3 align="center">🔭 I’m currently working on LMS for my school</h3>
-  <h3 align="center">🌱 I’m currently learning Spring, Xamarin, SKLearn</h3>
-  <h3 align="center">👯 I’m looking to collaborate on **the Rust Crates.io</h3>
-  <h3 align="center">🤝 I’m looking for help with **Rust WebAssembly</h3>
-  <h3 align="center">💬 Ask me about JSP/Servlets, Hibernate, Django, SciPy</h3>
-  <h3 align="center">📫 How to reach me elroykanye@gmail.com</h3>
-  <h3 align="center">⚡ Fun fact Eru is a delusional dish</h3>
+  <h5 align="center">🔭 I’m currently working on LMS for my school</h5>
+  <h5 align="center">🌱 I’m currently learning Spring, Xamarin, SKLearn</h5>
+  <h5 align="center">👯 I’m looking to collaborate on **the Rust Crates.io</h5>
+  <h5 align="center">🤝 I’m looking for help with **Rust WebAssembly</h5>
+  <h5 align="center">💬 Ask me about JSP/Servlets, Hibernate, Django, SciPy</h5>
+  <h5 align="center">📫 How to reach me elroykanye@gmail.com</h5>
+  <h5 align="center">⚡ Fun fact Eru is a delusional dish</h5>
 </p>
 
 <h3 align="center">Connect with me:</h3>
