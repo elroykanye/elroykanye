@@ -1,10 +1,16 @@
+## Intro
 <h1 align="left">Ayo 🌍, I'm EK 2.0 🤓</h1>
 <h2 align="left">☕👨🏾‍💻🤓😃😶😯😒🤗👨🏾‍💻☕</h2>
 <h3 align="left">Psycho dev from Jupyter</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=elroykanye" alt="elroykanye" /></a> </p>
+### 🏆 GitHub Profile Trophy:
+<p align="center">
+<a href="https://github.com/ryo-ma/github-profile-trophy">
+  <img width=800 src="https://github-profile-trophy.vercel.app/?username=elroykanye&column=8&theme=onedark&no-frame=true&no-bg=true"/>
+</a>
+</p>
 
 <p align="left"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
 
@@ -42,12 +48,7 @@
 <p align="left"><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=elroykanye&theme=ayu-mirage" alt="elroykanye" /></p>
 
 
-### 🏆 GitHub Profile Trophy:
-<p align="center">
-<a href="https://github.com/ryo-ma/github-profile-trophy">
-  <img width=800 src="https://github-profile-trophy.vercel.app/?username=elroykanye&column=8&theme=onedark&no-frame=true&no-bg=true"/>
-</a>
-</p>
+
 
 ### 📈 GitHub Activity:
   <a href="https://github.com/elroykanye/github-readme-activity-graph"><img alt="DenverCoder1's Activity Graph" src="https://activity-graph.herokuapp.com/graph?username=elroykanye&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true" /></a>
