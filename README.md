@@ -1,12 +1,14 @@
 ## Intro
-<h1 align="center">Ayo 🌍, I'm EK 2.0 🤓</h1>
-<h2 align="center">☕👨🏾‍💻🤓😃😶😯😒🤗👨🏾‍💻☕</h2>
-<h3 align="center">Psycho dev from Jupyter</h3>
+<p align="center">
+  <h1 align="center">Ayo 🌍, I'm EK 2.0 🤓</h1>
+  <h2 align="center">☕👨🏾‍💻🤓😃😶😯😒🤗👨🏾‍💻☕</h2>
+  <h3 align="center">Psycho dev from Jupyter</h3>
+</p>
 
 <p align="center"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p>
 
-### 🏆 GitHub Profile Trophy:
 <p align="center">
+  <h2>🏆 GitHub Profile Trophy</h2>
 <a href="https://github.com/ryo-ma/github-profile-trophy">
   <img width=800 src="https://github-profile-trophy.vercel.app/?username=elroykanye&column=8&theme=onedark&no-frame=true&no-bg=true"/>
 </a>
@@ -15,33 +17,14 @@
 <p align="center"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
 
 <p align="center">
-  🔭 I’m currently working on **LMS for my school**
-
-- 🌱 I’m currently learning **Spring, Xamarin, SKLearn**
-
-- 👯 I’m looking to collaborate on **the Rust Crates.io**
-
-- 🤝 I’m looking for help with **Rust WebAssembly**
-
-- 💬 Ask me about **JSP/Servlets, Hibernate, Django, SciPy**
-
-- 📫 How to reach me **elroykanye@gmail.com**
-
-- ⚡ Fun fact **Eru is a delusional dish**
+  🔭 I’m currently working on LMS for my school
+  🌱 I’m currently learning Spring, Xamarin, SKLearn
+  👯 I’m looking to collaborate on **the Rust Crates.io
+  🤝 I’m looking for help with **Rust WebAssembly
+  💬 Ask me about JSP/Servlets, Hibernate, Django, SciPy
+  📫 How to reach me elroykanye@gmail.com
+  ⚡ Fun fact Eru is a delusional dish
 </p>
-- 🔭 I’m currently working on **LMS for my school**
-
-- 🌱 I’m currently learning **Spring, Xamarin, SKLearn**
-
-- 👯 I’m looking to collaborate on **the Rust Crates.io**
-
-- 🤝 I’m looking for help with **Rust WebAssembly**
-
-- 💬 Ask me about **JSP/Servlets, Hibernate, Django, SciPy**
-
-- 📫 How to reach me **elroykanye@gmail.com**
-
-- ⚡ Fun fact **Eru is a delusional dish**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
