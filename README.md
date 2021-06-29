@@ -60,7 +60,6 @@
   Visitor count<br>
   <img src="https://profile-counter.glitch.me/elroykanye/count.svg" />
 </p>
-  <br>
+![GitHub metrics](https://metrics.lecoq.io/elroykanye) 
+
 ![](https://github.com/elroykanye/elroykanye/blob/main/imgs/bottom_header.svg)
-<br>
-![GitHub metrics](https://metrics.lecoq.io/elroykanye)  
