@@ -59,6 +59,9 @@
 </p>
 
 <!-- ![GitHub metrics](https://metrics.lecoq.io/elroykanye) -->
-![](https://metrics.lecoq.io/elroykanye)
+<p align="center"> 
+  ![](https://metrics.lecoq.io/elroykanye)
+</p>
+
 
 ![](https://github.com/elroykanye/elroykanye/blob/main/imgs/bottom_header.svg)
