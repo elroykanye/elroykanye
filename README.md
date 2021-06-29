@@ -10,13 +10,18 @@
   <h2 align="center">🏆 GitHub Profile Trophy</h2>
   <p  align="center">
   <a href="https://github.com/ryo-ma/github-profile-trophy" align="center">
-    <img width=800 src="https://github-profile-trophy.vercel.app/?username=elroykanye&column=8&theme=onedark&no-frame=true&no-bg=true"/>
+    <img width=800 src="https://github-profile-trophy.vercel.app/?username=elroykanye&column=8&no-frame=true&no-bg=true"/>
   </a>
   </p>
 </p>
 
-<p align="center"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
+<p align="center">
+<a href="https://profile.codersrank.io/user/elroykanye"><img width="640px" src="https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&username=elroykanye&layout=horizontal&badges=3&show-avatar=true&min-width=494px&branding=false&theme=nord&style=--bg-color:%23fff;--border:1px%20solid%23e4e2e2;--border-radius:4px;--header-padding:20px;--header-bg-color:%232f80ed;--name-font-size:18px;--name-font-weight:bold;--rank-font-size:14px;--preloader-color:%232f80ed;--badges-padding:20px;--badge-box-shadow:none;--badge-border:1px%20solid%23e4e2e2;--badge-rank-font-size:12px;--badge-location-font-size:12px;--badge-padding:10px;--badge-margin:10px;--badge-icon-size:16px;--badge-technology-font-size:14px;--badge-technology-font-weight:normal)" /></a>
+</p>
+<br>
 
+<p align="center"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
+<br>
 <p align="center">
   <h5 align="center">🔭 I’m currently working on LMS for my school</h5>
   <h5 align="center">🌱 I’m currently learning Spring, Xamarin, SKLearn</h5>
@@ -26,7 +31,7 @@
   <h5 align="center">📫 How to reach me elroykanye@gmail.com</h5>
   <h5 align="center">⚡ Fun fact Eru is a delusional dish</h5>
 </p>
-
+<br>
 <h3 align="center">Connect with me:</h3>
 <p align="center">
 <a href="https://dev.to/elroykanye" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/dev-dot-to.svg" alt="elroykanye" height="30" width="40" /></a> 
@@ -48,15 +53,6 @@
 
 <h2 align="center"> 📈 GitHub Activity </h2>
   <a href="https://github.com/elroykanye/github-readme-activity-graph"><img alt="DenverCoder1's Activity Graph" src="https://activity-graph.herokuapp.com/graph?username=elroykanye&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true&theme=nord" /></a>
-
-<p align="center">
-<a href="https://profile.codersrank.io/user/elroykanye"><img width="640px" src="https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&username=elroykanye&layout=horizontal&badges=3&show-avatar=true&min-width=494px&branding=false&style=--bg-color:%23fff;--border:1px%20solid%23e4e2e2;--border-radius:4px;--header-padding:20px;--header-bg-color:%232f80ed;--name-font-size:18px;--name-font-weight:bold;--rank-font-size:14px;--preloader-color:%232f80ed;--badges-padding:20px;--badge-box-shadow:none;--badge-border:1px%20solid%23e4e2e2;--badge-rank-font-size:12px;--badge-location-font-size:12px;--badge-padding:10px;--badge-margin:10px;--badge-icon-size:16px;--badge-technology-font-size:14px;--badge-technology-font-weight:normal)" /></a>
-</p>
-<br>
-<p align="center"> 
-  Visitor count<br>
-  <img src="https://profile-counter.glitch.me/elroykanye/count.svg" />
-</p>
 
 <!-- ![GitHub metrics](https://metrics.lecoq.io/elroykanye) -->
 
