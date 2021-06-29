@@ -44,10 +44,7 @@
 
 <p align="center" width=800>&nbsp;<img align="center"  src="https://github-readme-stats.vercel.app/api?username=elroykanye&show_icons=true&locale=en&theme=nord" alt="elroykanye" /></p>
 
-<p align="center" width=800><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=elroykanye&theme=nord" alt="elroykanye" /></p>
-
-
-
+<p align="center" width=800><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=elroykanye&theme=nord&hide_border=true" alt="elroykanye" /></p>
 
 <h2 align="center"> 📈 GitHub Activity </h2>
   <a href="https://github.com/elroykanye/github-readme-activity-graph"><img alt="DenverCoder1's Activity Graph" src="https://activity-graph.herokuapp.com/graph?username=elroykanye&bg_color=1F222E&color=F8D866&line=F85D7F&point=FFFFFF&hide_border=true&theme=nord" /></a>
@@ -61,6 +58,7 @@
   <img src="https://profile-counter.glitch.me/elroykanye/count.svg" />
 </p>
 
-![GitHub metrics](https://metrics.lecoq.io/elroykanye) 
+<!-- ![GitHub metrics](https://metrics.lecoq.io/elroykanye) -->
+![](https://metrics.lecoq.io/elroykanye)
 
 ![](https://github.com/elroykanye/elroykanye/blob/main/imgs/bottom_header.svg)
