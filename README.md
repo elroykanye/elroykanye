@@ -1,9 +1,9 @@
 ## Intro
-<h1 align="left">Ayo 🌍, I'm EK 2.0 🤓</h1>
-<h2 align="left">☕👨🏾‍💻🤓😃😶😯😒🤗👨🏾‍💻☕</h2>
-<h3 align="left">Psycho dev from Jupyter</h3>
+<h1 align="center">Ayo 🌍, I'm EK 2.0 🤓</h1>
+<h2 align="center">☕👨🏾‍💻🤓😃😶😯😒🤗👨🏾‍💻☕</h2>
+<h3 align="center">Psycho dev from Jupyter</h3>
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p>
+<p align="center"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p>
 
 ### 🏆 GitHub Profile Trophy:
 <p align="center">
@@ -12,8 +12,23 @@
 </a>
 </p>
 
-<p align="left"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
+<p align="center"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
 
+<p align="center">
+  🔭 I’m currently working on **LMS for my school**
+
+- 🌱 I’m currently learning **Spring, Xamarin, SKLearn**
+
+- 👯 I’m looking to collaborate on **the Rust Crates.io**
+
+- 🤝 I’m looking for help with **Rust WebAssembly**
+
+- 💬 Ask me about **JSP/Servlets, Hibernate, Django, SciPy**
+
+- 📫 How to reach me **elroykanye@gmail.com**
+
+- ⚡ Fun fact **Eru is a delusional dish**
+</p>
 - 🔭 I’m currently working on **LMS for my school**
 
 - 🌱 I’m currently learning **Spring, Xamarin, SKLearn**
