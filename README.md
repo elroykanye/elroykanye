@@ -8,9 +8,11 @@
 
 <p align="center">
   <h2 align="center">🏆 GitHub Profile Trophy</h2>
+  <p  align="center">
   <a href="https://github.com/ryo-ma/github-profile-trophy" align="center">
     <img width=800 src="https://github-profile-trophy.vercel.app/?username=elroykanye&column=8&theme=onedark&no-frame=true&no-bg=true"/>
   </a>
+  </p>
 </p>
 
 <p align="center"> <a href="https://twitter.com/elroykanye" target="blank"><img src="https://img.shields.io/twitter/follow/elroykanye?logo=twitter&style=for-the-badge" alt="elroykanye" /></a> </p>
