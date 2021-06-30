@@ -22,12 +22,12 @@
 
 <p align="center">
   <span align="center">🔭 I’m currently working on <b>LMS for my school</b></span><br>
-  <span align="center">🌱 I’m currently learning Spring, Xamarin, SKLearn</span><br>
-  <span align="center">👯 I’m looking to collaborate on **the Rust Crates.io</span><br>
-  <span align="center">🤝 I’m looking for help with **Rust WebAssembly</span><br>
-  <span align="center">💬 Ask me about JSP/Servlets, Hibernate, Django, SciPy</span><br>
-  <span align="center">📫 How to reach me elroykanye@gmail.com</span><br>
-  <span align="center">⚡ Fun fact Eru is a delusional dish</span><br>
+  <span align="center">🌱 I’m currently learning <b> Spring, Xamarin, SKLearn </b></span><br>
+  <span align="center">👯 I’m looking to collaborate on the <b> Rust Crates.io</b>  </span><br>
+  <span align="center">🤝 I’m looking for help with <b> Rust WebAssembly</b> </span><br>
+  <span align="center">💬 Ask me about <b> JSP/Servlets, Hibernate, Django, SciPy </b></span><br>
+  <span align="center">📫 How to reach me <b> Socials below </b></span><br>
+  <span align="center">⚡ Fun fact <b> Eru is a delusional dish </b></span><br>
 </p>
 <br>
 <h3 align="center">Connect with me:</h3>
