@@ -21,13 +21,13 @@
 <br>
 
 <p align="center">
-  <span align="center">🔭 I’m currently working on LMS for my school</span>
-  <span align="center">🌱 I’m currently learning Spring, Xamarin, SKLearn</span>
-  <span align="center">👯 I’m looking to collaborate on **the Rust Crates.io</span>
-  <span align="center">🤝 I’m looking for help with **Rust WebAssembly</span>
-  <span align="center">💬 Ask me about JSP/Servlets, Hibernate, Django, SciPy</span>
-  <span align="center">📫 How to reach me elroykanye@gmail.com</span>
-  <span align="center">⚡ Fun fact Eru is a delusional dish</span>
+  <span align="center">🔭 I’m currently working on LMS for my school</span><br>
+  <span align="center">🌱 I’m currently learning Spring, Xamarin, SKLearn</span><br>
+  <span align="center">👯 I’m looking to collaborate on **the Rust Crates.io</span><br>
+  <span align="center">🤝 I’m looking for help with **Rust WebAssembly</span><br>
+  <span align="center">💬 Ask me about JSP/Servlets, Hibernate, Django, SciPy</span><br>
+  <span align="center">📫 How to reach me elroykanye@gmail.com</span><br>
+  <span align="center">⚡ Fun fact Eru is a delusional dish</span><br>
 </p>
 <br>
 <h3 align="center">Connect with me:</h3>
