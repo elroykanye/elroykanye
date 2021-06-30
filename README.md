@@ -21,7 +21,7 @@
 <br>
 
 <p align="center">
-  <span align="center">🔭 I’m currently working on LMS for my school</span><br>
+  <span align="center">🔭 I’m currently working on <b>LMS for my school</b></span><br>
   <span align="center">🌱 I’m currently learning Spring, Xamarin, SKLearn</span><br>
   <span align="center">👯 I’m looking to collaborate on **the Rust Crates.io</span><br>
   <span align="center">🤝 I’m looking for help with **Rust WebAssembly</span><br>
