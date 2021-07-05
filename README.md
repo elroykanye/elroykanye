@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">Ayo 🌍, I'm EK 2.0 🤓</h1>
-  <h2 align="center">☕👨🏾‍💻🤓😃😶😯😒🤗👨🏾‍💻☕</h2>
+  <h2 align="center">☕👨🏾‍💻☕</h2>
   <h3 align="center">Psycho dev from Jupyter</h3>
 </p>
 
