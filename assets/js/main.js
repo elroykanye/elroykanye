@@ -1,8 +1,7 @@
 /**
-* Template Name: iPortfolio - v1.5.1
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* Template Name: elroykanye-porto
+* Author: Elroy Kanye
+* License: https://github.com/elroykanye/elroykanye/LICENSE
 */
 !(function($) {
   "use strict";

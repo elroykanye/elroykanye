@@ -6,7 +6,8 @@
 # General
 -------------------------------------------------------------- */
 body {
-    font-family: "Open Sans", sans-serif;
+    /* font-family: "Open Sans", sans-serif; */
+    font-family: "Alata";
 
     /* color: #272829; */
     color: rgba(0,0,0,9);
