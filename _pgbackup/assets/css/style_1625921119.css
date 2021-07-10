@@ -9,7 +9,7 @@ body {
     font-family: "Open Sans", sans-serif;
 
     /* color: #272829; */
-    color: rgba(0,0,0,9);
+    background: rgba(240,240,240,9);
 }
 
 a {
@@ -221,7 +221,7 @@ h6 {
 #hero {
     width: 100%;
     height: 100vh;
-    background: url("../img/kanye-hero1.jpg") top center;
+    background: url("../img/hero-bg.jpg") top center;
     background-size: cover;
 }
 

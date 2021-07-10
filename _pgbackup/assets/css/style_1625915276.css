@@ -7,9 +7,7 @@
 -------------------------------------------------------------- */
 body {
     font-family: "Open Sans", sans-serif;
-
-    /* color: #272829; */
-    color: rgba(0,0,0,9);
+    color: #272829;
 }
 
 a {
@@ -73,7 +71,7 @@ h6 {
     z-index: 9997;
     transition: all 0.5s;
     padding: 0 15px;
-    background: #040b14;
+    //background: #040b14;
     overflow-y: auto;
 }
 
@@ -221,7 +219,7 @@ h6 {
 #hero {
     width: 100%;
     height: 100vh;
-    background: url("../img/kanye-hero1.jpg") top center;
+    background: url("../img/hero-bg.jpg") top center;
     background-size: cover;
 }
 
