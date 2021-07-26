@@ -8,7 +8,7 @@
    <img align="center" width="360" alt="Coding" src="https://github.com/elroykanye/elroykanye/blob/main/coding-freak.gif">
 </p>
 
-<p align="center"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p>
+<!-- <p align="center"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p> -->
 
 <p align="center">
   <h2 align="center">🏆 GitHub Profile Trophy</h2>
