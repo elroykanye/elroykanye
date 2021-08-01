@@ -65,5 +65,4 @@
 -->
 <!-- ![GitHub metrics](https://metrics.lecoq.io/elroykanye) -->
 
-[![elroykanye's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=elroykanye)](https://github.com/anuraghazra/github-readme-stats)
 ![](https://github.com/elroykanye/elroykanye/blob/main/imgs/bottom_header.svg)
