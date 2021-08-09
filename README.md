@@ -20,7 +20,7 @@
 </p>
 <br>
 <p align="center">
-  <span align="center">🌱 I’m currently learning everything 🙂</span><br>
+  <span align="center">🌱 I’m currently watching movies 🙂</span><br>
   <span align="center">👯 I’m looking to collaborate on the Rust Crates.io  </span><br>
   <span align="center">🤝 I’m looking for help with Rust WebAssembly</span><br>
   <span align="center">💬 Ask me about my Spiders</span><br>
