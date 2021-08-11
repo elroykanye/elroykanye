@@ -43,12 +43,13 @@
 <!--
 <p align="center">
 
-Put here
-
+<a href="https://github.com/elroykanye/elroykanye">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=elroykanye&hide=html&title_color=ffffff&text_color=c9cacc&icon_color=2bbc8a&bg_color=1d1f21" />
+</a>
 
 </p>
 -->
-<p align="center"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=elroykanye&hide=html&show_icons=true&locale=en&layout=compact&theme=nord" alt="elroykanye" />
+<p align="center"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=elroykaye&hide=html&show_icons=true&locale=en&layout=compact&theme=nord" alt="elroykanye" />
 </p>
 
 <p align="center">
