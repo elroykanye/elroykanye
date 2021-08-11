@@ -47,7 +47,7 @@
   </a>
 </p>
 -->
-<p align="center"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=elroykanye&hide=html&show_icons=true&locale=en&layout=compact" alt="elroykanye" />
+<p align="center"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=elroykanye&hide=html&show_icons=true&locale=en&layout=compact&theme=nord" alt="elroykanye" />
 </p>
 
 <p align="center">
