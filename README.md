@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Ayo 🌍, I'm EK 2.0 🤓</h1>
+  <h1 align="center">Ayo 🌍, I'm EK2.0 🤓</h1>
   <h2 align="center">☕👨🏾‍💻☕</h2>
 </p>
 
