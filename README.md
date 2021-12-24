@@ -3,7 +3,9 @@
   <h2 align="center">☕👨🏾‍💻☕</h2>
 </p>
 
-<p align="center"> <img src="https://komarev.com/ghpvc/?username=elroykanye&label=Profile%20views&color=0e75b6&style=flat" alt="elroykanye" /> </p>
+<p align="center">
+   [Profile views](https://gpvc.arturio.dev/elroykanye)
+</p>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Robot-Bold&size=30&color=330033&center=true&vCenter=true&width=900&height=110&lines=Psycho+Developer;Jupyter+Citizen;Rustacean;Jack+Of+All;Karnage)](https://git.io/typing-svg)
 <p align="center">
