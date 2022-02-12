@@ -32,7 +32,7 @@
 <p>
   <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=elroykanye&show_icons=true&locale=en&layout=compact&exclude_repo=wqu-datacourse-ek,py-datascience-tutos&langs_count=8&hide=html" alt="elroykanye" />
   
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=elroykanye&show_icons=true&locale=en" alt="elroykanye" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api?username=elroykanye&show_icons=true&locale=en&layout=compact" alt="elroykanye" />
 </p>
 
 <!--
