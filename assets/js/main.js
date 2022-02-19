@@ -104,9 +104,9 @@
 		//**===================Typed-word ===================**//	
 		
 			var typed = new Typed('.typed-word', {
-				strings: ["Ui/Ux Designer","Web Developer."," Web Designer."],
-				typeSpeed: 40,
-				backSpeed: 40,
+				strings: ["Fullstack Developer","Systems Programmer"," Data Scientist", "Engineering Student", "Mentor"],
+				typeSpeed: 50,
+				backSpeed: 50,
 				backDelay: 2000,
 				startDelay: 1500,
 				loop: true,
