@@ -1,19 +1,10 @@
-<h1 align="center">Hi 👋, I'm Elroy Kanye</h1>
-<h3 align="center">Student from Cameroon</h3>
+<h1 align="left">Hi 👋, I'm Elroy Kanye</h1>
+<h3 align="left">Student from Cameroon</h3>
+<h5>
+  I'm looking to collaborate on cool open source projects. Hit me up if you need help in Java, TypeScript, or CSharp.<br>
+  You can reach me at <a href="mailto:elroykdev@gmail.com" target="_blank">my email</a>.
+</h5>
 
-- 🔭 I’m currently working on [iStudyBucket](https://github.com/feljtech)
-
-- 🌱 I’m currently learning **Xamarin, Spring Cloud**
-
-- 👯 I’m looking to collaborate on [Microsoft OS Projects](https://github.com/microsoft)
-
-- 🤝 I’m looking for help with [Takeout](https://github.com/elroykanye/takeout-sb)
-
-- 💬 Ask me about **Java**
-
-- 📫 How to reach me **elroykanye@gmail.com**
-
-- ⚡ Fun fact **I think so I do**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
