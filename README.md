@@ -1,5 +1,5 @@
 <h1 align="left">Hi 👋, I'm Elroy Kanye</h1>
-<h3 align="left">Student from Cameroon</h3>
+<h3 align="left">Dev from Cameroon</h3>
 <h5>
   I'm looking to collaborate on cool open source projects. Hit me up if you need help in Java, TypeScript, or CSharp.<br>
   You can reach me at <a href="mailto:elroykdev@gmail.com" target="_blank">my email</a>.
