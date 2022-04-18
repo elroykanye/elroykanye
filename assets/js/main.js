@@ -104,7 +104,7 @@
 		//**===================Typed-word ===================**//	
 		
 			var typed = new Typed('.typed-word', {
-				strings: ["Fullstack Developer","Systems Programmer"," Data Scientist", "Engineering Student", "Mentor"],
+				strings: ["Fullstack Developer","Systems Programmer"," Data Scientist", "App Developer", "UI / UX", "Mentor"],
 				typeSpeed: 50,
 				backSpeed: 50,
 				backDelay: 2000,

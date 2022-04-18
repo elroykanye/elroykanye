@@ -43,10 +43,8 @@ $(function() {
 			if (data.responseText !== '') {
 				$(formMessages).text(data.responseText);
 			} else {
-				$(formMessages).text('Oops! An error occured and your message could not be sent.');
+				$(formMessages).text('Oops! An error occurred and your message could not be sent.');
 			}
 		});
 	});
-
 });
-
