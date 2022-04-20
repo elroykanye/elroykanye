@@ -7,11 +7,11 @@ public class MyInfo {
 
     public static String getEmail() { return "elroykdev@gmail.com"; }
     
+    public static String getPronouns() { return "He/Him"; }
+    
     public static String[] getOccupation() {
         return new String[] {"Developer", "Designer", "Engineer"};
     }
-
-    public static String getPronouns() { return "He/Him"; }
 
     public static Map<String, String> getSocials() {
         return Map.of(
