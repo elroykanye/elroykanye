@@ -5,9 +5,9 @@ public class MyInfo {
 
     public static Integer getAge() { return 21; }
 
-    public static String getEmail() { return "elroykdev@gmail.com"; }
+    public static String getPronouns() { return "He/Him/His"; }
     
-    public static String getPronouns() { return "He/Him"; }
+    public static String getEmail() { return "elroykdev@gmail.com"; }
     
     public static String[] getOccupation() {
         return new String[] {"Developer", "Designer", "Engineer"};
