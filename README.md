@@ -3,7 +3,7 @@
 public class MyInfo {
     public static String getName() { return "Elroy Kanye"; }
 
-    public static Integer getAge() { return 21; }
+    public static Number getAge() { return 21; }
 
     public static String getPronouns() { return "He/Him/His"; }
     
