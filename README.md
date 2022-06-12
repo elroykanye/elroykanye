@@ -15,9 +15,9 @@ public class MyInfo {
 
     public static Map<String, String> getSocials() {
         return Map.of(
-            "GitHub", "@elroykanye",
-            "LinkedIn", "https://linkedin.com/in/elroykanye",
+            "GitHub", "@elroykanye",,
             "Twitter", "https://twitter.com/elroykanye"
+            "LinkedIn", "https://linkedin.com/in/elroykanye"
         );
     }
 }
