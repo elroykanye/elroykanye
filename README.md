@@ -1,25 +1,21 @@
 # 👨🏾‍💻 Intro
 ```java
 public class MyInfo {
-    public static String getName() { return "Elroy Kanye"; }
+    public static String name = "Elroy Kanye";
 
-    public static Number getAge() { return 21; }
+    public static Number age 21;
 
-    public static String getPronouns() { return "He/Him/His"; }
+    public static String pronouns = "He/Him/His";
     
-    public static String getEmail() { return "elroykdev@gmail.com"; }
+    public static String email = "elroykdev@gmail.com";
     
-    public static String[] getOccupation() {
-        return new String[] {"Developer", "Designer", "Engineer"};
-    }
+    public static String[] occupation = new String[] {"Developer", "Designer", "Engineer"};
 
-    public static Map<String, String> getSocials() {
-        return Map.of(
-            "GitHub", "@elroykanye",,
-            "Twitter", "https://twitter.com/elroykanye"
-            "LinkedIn", "https://linkedin.com/in/elroykanye"
-        );
-    }
+    public static Map<String, String> socials = Map.of(
+         "GitHub", "@elroykanye",,
+         "Twitter", "https://twitter.com/elroykanye"
+         "LinkedIn", "https://linkedin.com/in/elroykanye"
+    );
 }
 ```
 ---
