@@ -9,7 +9,9 @@ public class MyInfo {
     
     public static String email = "elroykdev@gmail.com";
     
-    public static String[] occupation = new String[] {"Developer", "Designer", "Engineer"};
+    public static String[] occupation = new String[] {
+         "Developer", "Designer", "Engineer"
+    };
 
     public static Map<String, String> socials = Map.of(
          "GitHub", "@elroykanye",,
