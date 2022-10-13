@@ -3,7 +3,7 @@
 public class MyInfo {
     public static String name = "Elroy Kanye";
 
-    public static Number age 21;
+    public static Number age = 21;
 
     public static String pronouns = "He/Him/His";
     
