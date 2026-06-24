@@ -1,11 +1,32 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import {
+  Bug,
+  Rocket,
+  Cpu,
+  Database,
+  Cloud,
+  GitBranch,
+  Terminal,
+  Coffee,
+  type LucideIcon,
+} from "lucide-react";
 
-const ICONS = ["🐛", "🚀", "🪲", "☕", "💾", "🧠", "⚙️", "🦄"];
+const ICONS: { key: string; Icon: LucideIcon }[] = [
+  { key: "bug", Icon: Bug },
+  { key: "rocket", Icon: Rocket },
+  { key: "cpu", Icon: Cpu },
+  { key: "db", Icon: Database },
+  { key: "cloud", Icon: Cloud },
+  { key: "git", Icon: GitBranch },
+  { key: "terminal", Icon: Terminal },
+  { key: "coffee", Icon: Coffee },
+];
+const PAIRS = ICONS.length;
 const HISCORE_KEY = "memory:best";
 
-type Card = { id: number; icon: string };
+type Card = { id: number; key: string; Icon: LucideIcon };
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -18,7 +39,7 @@ function shuffle<T>(arr: T[]): T[] {
 
 function makeDeck(): Card[] {
   return shuffle(
-    [...ICONS, ...ICONS].map((icon, id) => ({ id, icon })),
+    [...ICONS, ...ICONS].map((c, id) => ({ id, key: c.key, Icon: c.Icon })),
   );
 }
 
@@ -35,7 +56,7 @@ export default function MemoryMatch() {
     setBest(b ? Number(b) : null);
   }, []);
 
-  const won = matched.length === ICONS.length;
+  const won = matched.length === PAIRS;
 
   useEffect(() => {
     if (won) {
@@ -57,7 +78,7 @@ export default function MemoryMatch() {
 
   const flip = (index: number) => {
     if (!started || flipped.length === 2) return;
-    if (flipped.includes(index) || matched.includes(deck[index].icon)) return;
+    if (flipped.includes(index) || matched.includes(deck[index].key)) return;
 
     const next = [...flipped, index];
     setFlipped(next);
@@ -65,8 +86,8 @@ export default function MemoryMatch() {
     if (next.length === 2) {
       setMoves((m) => m + 1);
       const [a, b] = next;
-      if (deck[a].icon === deck[b].icon) {
-        setMatched((prev) => [...prev, deck[a].icon]);
+      if (deck[a].key === deck[b].key) {
+        setMatched((prev) => [...prev, deck[a].key]);
         setFlipped([]);
       } else {
         setTimeout(() => setFlipped([]), 700);
@@ -75,12 +96,12 @@ export default function MemoryMatch() {
   };
 
   const isUp = (i: number) =>
-    flipped.includes(i) || matched.includes(deck[i].icon);
+    flipped.includes(i) || matched.includes(deck[i].key);
 
   const verdict = useMemo(() => {
-    if (moves <= 10) return "Photographic memory. 🧠";
+    if (moves <= 10) return "Photographic memory.";
     if (moves <= 16) return "Sharp. Very sharp.";
-    return "You got there. Eventually. 😅";
+    return "You got there. Eventually.";
   }, [moves]);
 
   return (
@@ -95,29 +116,36 @@ export default function MemoryMatch() {
         </span>
         <span className="text-muted">best {best ?? "—"}</span>
         <span className="text-muted">
-          {matched.length}/{ICONS.length}
+          {matched.length}/{PAIRS}
         </span>
       </div>
 
       <div className="relative mx-auto mt-3 grid max-w-[16rem] grid-cols-4 gap-2 sm:max-w-[18rem]">
-        {deck.map((card, i) => (
-          <button
-            key={card.id}
-            type="button"
-            onClick={() => flip(i)}
-            disabled={!started || isUp(i)}
-            aria-label={isUp(i) ? card.icon : "hidden card"}
-            className={`flex aspect-square items-center justify-center rounded-xl border border-border text-2xl transition-all ${
-              isUp(i)
-                ? "bg-white/10"
-                : "bg-white/5 active:scale-90"
-            }`}
-          >
-            <span className={isUp(i) ? "animate-[pop_0.18s_ease]" : "opacity-0"}>
-              {isUp(i) ? card.icon : "?"}
-            </span>
-          </button>
-        ))}
+        {deck.map((card, i) => {
+          const up = isUp(i);
+          const Icon = card.Icon;
+          return (
+            <button
+              key={card.id}
+              type="button"
+              onClick={() => flip(i)}
+              disabled={!started || up}
+              aria-label={up ? card.key : "hidden card"}
+              className={`flex aspect-square items-center justify-center rounded-xl border border-border transition-all ${
+                up ? "bg-white/10" : "bg-white/5 active:scale-90"
+              }`}
+            >
+              {up ? (
+                <Icon
+                  className="h-6 w-6 animate-[pop_0.18s_ease] text-accent-2"
+                  strokeWidth={1.75}
+                />
+              ) : (
+                <span className="h-1.5 w-1.5 rounded-full bg-muted/50" />
+              )}
+            </button>
+          );
+        })}
 
         {(!started || won) && (
           <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-background/70 p-4 text-center backdrop-blur-sm">
@@ -128,7 +156,9 @@ export default function MemoryMatch() {
               </>
             )}
             {!started && (
-              <p className="text-xs text-muted">Match all 8 pairs of the stack.</p>
+              <p className="text-xs text-muted">
+                Match all {PAIRS} pairs of the stack.
+              </p>
             )}
             <button
               type="button"

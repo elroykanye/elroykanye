@@ -216,27 +216,28 @@ export const currently: string[] = [
   "Collecting Grafana dashboards like trading cards.",
 ];
 
-export type Principle = { emoji: string; title: string; body: string };
+// `icon` maps to a lucide icon in Principles.tsx.
+export type Principle = { icon: string; title: string; body: string };
 
 // Short, opinionated “things I believe” — more human than a skills list.
 export const principles: Principle[] = [
   {
-    emoji: "🧱",
+    icon: "layers",
     title: "Boring tech, exciting outcomes",
     body: "I reach for proven tools. The thrill should be in what we ship, not in 3am incident calls.",
   },
   {
-    emoji: "🧭",
+    icon: "compass",
     title: "Readable beats clever",
     body: "Code is read far more than it’s written. If the next dev needs a séance to understand it, I rewrote it.",
   },
   {
-    emoji: "🤝",
+    icon: "users",
     title: "Mentor as you go",
     body: "A team that levels up together ships faster than any one hero ever could.",
   },
   {
-    emoji: "🚀",
+    icon: "rocket",
     title: "Ship, measure, repeat",
     body: "Small reversible steps with good observability beat a big-bang launch and a prayer.",
   },

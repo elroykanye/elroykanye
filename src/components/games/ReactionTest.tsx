@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Rocket, Bug } from "lucide-react";
 
 const HISCORE_KEY = "reaction:best";
 type Phase = "idle" | "waiting" | "go" | "tooSoon" | "done";
@@ -61,18 +62,18 @@ export default function ReactionTest() {
 
   const verdict =
     ms < 220
-      ? "Inhumanly fast. Are you a bot? 🤖"
+      ? "Inhumanly fast. Are you a bot?"
       : ms < 300
-        ? "Production-grade reflexes. 🚀"
+        ? "Production-grade reflexes."
         : ms < 400
           ? "Solid. Ship it."
-          : "Works on my machine. 🐢";
+          : "Works on my machine.";
 
   return (
     <div>
       <p className="text-center text-xs text-muted">
-        Wait for green, then tap to <span className="font-mono">ship 🚀</span>.
-        Tap on red and you shipped a bug.
+        Wait for green, then tap to <span className="font-mono">ship</span>. Tap
+        on red and you shipped a bug.
       </p>
 
       <div className="mt-3 flex items-center justify-center font-mono text-xs text-muted">
@@ -88,14 +89,18 @@ export default function ReactionTest() {
           <span className="text-sm text-muted">Tap to arm. Then wait…</span>
         )}
         {phase === "waiting" && (
-          <span className="text-lg font-semibold">Wait for green… 🟥</span>
+          <span className="text-lg font-semibold">Wait for green…</span>
         )}
         {phase === "go" && (
-          <span className="text-2xl font-bold gradient-text">SHIP IT! 🟩</span>
+          <span className="inline-flex items-center gap-2 text-2xl font-bold gradient-text">
+            <Rocket className="h-6 w-6" strokeWidth={2} /> SHIP IT!
+          </span>
         )}
         {phase === "tooSoon" && (
           <>
-            <span className="text-lg font-semibold">Too soon! 🐛</span>
+            <span className="inline-flex items-center gap-2 text-lg font-semibold">
+              <Bug className="h-5 w-5 text-rose-400" strokeWidth={2} /> Too soon!
+            </span>
             <span className="mt-1 text-xs text-muted">
               You shipped on red. Tap to retry.
             </span>

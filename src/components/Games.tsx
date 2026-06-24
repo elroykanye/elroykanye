@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { Bug, Brain, Rocket, type LucideIcon } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import BugSquash from "@/components/games/BugSquash";
 import MemoryMatch from "@/components/games/MemoryMatch";
 import ReactionTest from "@/components/games/ReactionTest";
 
-const TABS = [
-  { id: "bugs", label: "Bug Squash", emoji: "🐛" },
-  { id: "memory", label: "Match the Stack", emoji: "🧠" },
-  { id: "reaction", label: "Ship It", emoji: "🚀" },
-] as const;
+const TABS: { id: string; label: string; Icon: LucideIcon }[] = [
+  { id: "bugs", label: "Bug Squash", Icon: Bug },
+  { id: "memory", label: "Match the Stack", Icon: Brain },
+  { id: "reaction", label: "Ship It", Icon: Rocket },
+];
 
 type TabId = (typeof TABS)[number]["id"];
 
@@ -41,7 +42,7 @@ export default function Games() {
                     : "border border-border bg-white/5 text-muted hover:text-foreground"
                 }`}
               >
-                <span>{tab.emoji}</span>
+                <tab.Icon className="h-4 w-4" strokeWidth={2} />
                 <span>{tab.label}</span>
               </button>
             ))}

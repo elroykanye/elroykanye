@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Bug, Gem, Bomb, type LucideIcon } from "lucide-react";
 
 type Kind = "bug" | "gold" | "bomb";
 type Cell = { kind: Kind; id: number; expires: number } | null;
@@ -9,15 +10,20 @@ const GRID = 9;
 const GAME_SECONDS = 20;
 const HISCORE_KEY = "bugsquash:hi";
 
-const FACE: Record<Kind, string> = { bug: "🐛", gold: "🪲", bomb: "💣" };
+const FACE: Record<Kind, LucideIcon> = { bug: Bug, gold: Gem, bomb: Bomb };
+const COLOR: Record<Kind, string> = {
+  bug: "text-emerald-400",
+  gold: "text-amber-300",
+  bomb: "text-rose-400",
+};
 const POINTS: Record<Kind, number> = { bug: 1, gold: 3, bomb: -2 };
 
 function verdict(score: number): string {
-  if (score <= 0) return "The bugs send their regards. 🪦";
+  if (score <= 0) return "The bugs send their regards.";
   if (score < 8) return "Junior squasher. The linter is disappointed.";
   if (score < 16) return "Mid-level reflexes. The bugs respect you now.";
-  if (score < 26) return "Senior squasher — promotion incoming. 📈";
-  return "Principal Bug Slayer. Apply to my team. 🫡";
+  if (score < 26) return "Senior squasher — promotion incoming.";
+  return "Principal Bug Slayer. Apply to my team.";
 }
 
 export default function BugSquash() {
@@ -99,9 +105,17 @@ export default function BugSquash() {
 
   return (
     <div className={shake ? "animate-[wiggle_0.35s_ease]" : ""}>
-      <p className="text-center text-xs text-muted">
-        🐛 +1 · 🪲 +3 · don&apos;t tap 💣
-      </p>
+      <div className="flex items-center justify-center gap-4 text-xs text-muted">
+        <span className="inline-flex items-center gap-1">
+          <Bug className="h-3.5 w-3.5 text-emerald-400" strokeWidth={2} /> +1
+        </span>
+        <span className="inline-flex items-center gap-1">
+          <Gem className="h-3.5 w-3.5 text-amber-300" strokeWidth={2} /> +3
+        </span>
+        <span className="inline-flex items-center gap-1">
+          <Bomb className="h-3.5 w-3.5 text-rose-400" strokeWidth={2} /> avoid
+        </span>
+      </div>
 
       <div className="mt-3 flex items-center justify-between font-mono text-xs">
         <span>
@@ -114,20 +128,26 @@ export default function BugSquash() {
       </div>
 
       <div className="relative mx-auto mt-3 grid max-w-[15rem] grid-cols-3 gap-2 sm:max-w-[17rem]">
-        {cells.map((cell, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => whack(i)}
-            disabled={!running}
-            aria-label={cell ? `Squash ${cell.kind}` : "empty"}
-            className="flex aspect-square items-center justify-center rounded-xl border border-border bg-white/5 text-3xl transition-transform active:scale-90 disabled:cursor-default"
-          >
-            <span className={cell ? "animate-[pop_0.18s_ease]" : "opacity-0"}>
-              {cell ? FACE[cell.kind] : "·"}
-            </span>
-          </button>
-        ))}
+        {cells.map((cell, i) => {
+          const Icon = cell ? FACE[cell.kind] : null;
+          return (
+            <button
+              key={i}
+              type="button"
+              onClick={() => whack(i)}
+              disabled={!running}
+              aria-label={cell ? `Squash ${cell.kind}` : "empty"}
+              className="flex aspect-square items-center justify-center rounded-xl border border-border bg-white/5 transition-transform active:scale-90 disabled:cursor-default"
+            >
+              {Icon && cell && (
+                <Icon
+                  className={`h-7 w-7 animate-[pop_0.18s_ease] ${COLOR[cell.kind]}`}
+                  strokeWidth={2}
+                />
+              )}
+            </button>
+          );
+        })}
 
         {(idle || over) && (
           <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-background/70 p-4 text-center backdrop-blur-sm">
