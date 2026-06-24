@@ -43,7 +43,11 @@ export default function Header() {
     >
       <nav
         className={`mx-auto max-w-4xl rounded-2xl px-4 py-3 transition-all duration-300 ${
-          scrolled || open ? "glass shadow-2xl shadow-black/40" : "bg-transparent"
+          open
+            ? "border border-border bg-background/95 shadow-2xl shadow-black/60 backdrop-blur-xl"
+            : scrolled
+              ? "glass shadow-2xl shadow-black/40"
+              : "bg-transparent"
         }`}
       >
         <div className="flex items-center justify-between">
