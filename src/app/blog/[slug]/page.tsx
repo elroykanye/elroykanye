@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import LikeButton from "@/components/blog/LikeButton";
 import ShareButton from "@/components/blog/ShareButton";
 import Comments from "@/components/blog/Comments";
+import RandomDiversion from "@/components/blog/RandomDiversion";
 import {
   getAllPosts,
   getPostBySlug,
@@ -144,13 +145,17 @@ export default async function BlogPost({
           )}
 
           <div className="glass mt-10 rounded-3xl p-6 sm:p-10">
-            <div className="prose prose-invert max-w-none prose-headings:scroll-mt-28 prose-headings:tracking-tight prose-a:text-accent-2 prose-pre:border prose-pre:border-border prose-pre:bg-black/50 prose-code:text-accent-2">
+            <div
+              data-post-content
+              className="prose prose-invert max-w-none prose-headings:scroll-mt-28 prose-headings:tracking-tight prose-a:text-accent-2 prose-pre:border prose-pre:border-border prose-pre:bg-black/50 prose-code:text-accent-2"
+            >
               <MDXRemote
                 source={post.content}
                 options={{ mdxOptions: { rehypePlugins: [rehypeSlug] } }}
               />
             </div>
           </div>
+          <RandomDiversion />
 
           {/* Previous / next in series */}
           {series && (series.prev || series.next) && (

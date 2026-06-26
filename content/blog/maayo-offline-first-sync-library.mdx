@@ -1,0 +1,80 @@
+---
+title: "Maayo: building an offline-first sync library because I can't trust the network"
+date: "2026-06-25"
+summary: "The unreliable internet that interrupted me when I was learning to code is the exact thing this library exists to defeat. Here is how Maayo lets apps write instantly offline and sync themselves when the connection comes back, and the design calls that actually mattered."
+tags: ["engineering", "offline-first", "typescript", "open-source", "sync"]
+series: "Engineering"
+order: 2
+---
+
+The internet where I live taught me one lesson early. Do not build like the network will always be there, because it will not. Power cuts, dead data bundles, a whole region going offline for months. If your app falls over the second the connection drops, it is not finished.
+
+So at some point I stopped working around the problem on every project and built a library for it. It is called Maayo.
+
+Maayo means river in Fulfulde, and that is the whole idea in one word. Data should flow to where it needs to be on its own, the way a river finds its way down, even when nobody is watching it.
+
+## What it actually does
+
+Maayo is an offline-first sync library. The idea is easy to say and annoying to build. Your app writes data locally, instantly, whether you are online or not. Those writes sit in a local outbox. When the connection comes back, they sync up to your server on their own. No spinner of death, no lost work, no "please try again later."
+
+On the web, the outbox lives in IndexedDB. A write lands there first and shows up in the UI right away. The user never waits on the network to see their own action. The sync happens quietly in the background whenever it can.
+
+## Why I built it
+
+I wanted an app that just worked offline and caught up by itself the moment it got signal. Not "offline mode" bolted on at the end as a feature nobody tested properly. Offline as the default assumption.
+
+Where I build, that is not a nice-to-have, it is the only honest way to ship. Everything I looked at either assumed a good connection or was a heavy framework I did not want to marry. So I built the thing I wished already existed.
+
+## How it works
+
+Under the hood Maayo is deliberately small. The whole protocol is two HTTP endpoints:
+
+- **POST /sync/mutations** the client pushes its queued writes up to the server.
+- **GET /sync/changes** the client pulls everything that changed on the server since the last time it checked, tracked by a cursor.
+
+Push and pull run independently, and that matters more than it looks. A device can sit offline for a long time, pile up hundreds of writes in the outbox, and when it finally reconnects it just drains the queue and pulls the deltas. No drama, no manual reconciliation.
+
+On the client it reads like local data, because to your component it is:
+
+```tsx
+import { SyncProvider, useCollection } from '@maayo/react';
+
+function App() {
+  return (
+    <SyncProvider
+      config={{ baseUrl: 'https://api.example.com', dbName: 'myapp', channels: ['org:abc'] }}
+    >
+      <StudentList />
+    </SyncProvider>
+  );
+}
+
+function StudentList() {
+  const students = useCollection('students');
+  return students.map((s) => <div key={s.id}>{s.name}</div>);
+}
+```
+
+You read from a collection like it is just an array. Maayo handles the syncing underneath. Data is also scoped into channels, like `org:abc` above, so a client only ever pulls the slice of data it is allowed to see instead of the whole database.
+
+## The conflicts question
+
+The honest hard part of any sync system is what happens when the same record gets changed in two places while one of them was offline. There is no free lunch here.
+
+I went with last-write-wins. The most recent write, by timestamp, wins the merge. It is not the right answer for every app on earth, but it is simple, predictable, and you can actually reason about it at 2am. The fancier schemes, CRDTs and their relatives, buy you more correctness, but they cost a mountain of complexity. For the apps I build, last-write-wins is the honest trade.
+
+## The hard part was not the code
+
+People assume the hard part of a thing like this is the typing. It was not. It was the design.
+
+Deciding what the protocol should be. Deciding to keep the server dumb. Deciding how conflicts resolve and then saying the trade-offs out loud instead of pretending they do not exist. Once those calls were made, the code mostly followed. The weekends went into the decisions.
+
+That "keep the server dumb" call is the one I am happiest with. Maayo ships a Spring Boot package, but the real contract is just that two-endpoint protocol plus a spec you can implement on any backend, any database, any language. That is why it works behind Spring, Node, and Go. I did not want to force my backend choices on anyone, including future me.
+
+## Status
+
+It is open source, MIT licensed. The TypeScript packages are on npm (`@maayo/react`, `@maayo/angular`, `@maayo/client`, and a zero-dependency `@maayo/protocol` for the types), and the Spring Boot package is on GitHub Packages. Right now I use it internally across all of my products that need to work offline. It is the quiet dependency that keeps them from breaking when the internet does.
+
+There is a full circle in this I did not plan. The unreliable network that interrupted me when I was learning to code is the exact thing Maayo exists to beat. I got tired of building around bad connectivity, so I built a tool that just assumes it.
+
+If you build somewhere the network cannot be trusted, or honestly anywhere, because the network lies everywhere, take a look: [github.com/elroykanye/maayo](https://github.com/elroykanye/maayo).
