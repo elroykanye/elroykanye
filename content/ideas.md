@@ -6,6 +6,29 @@
 >
 > When a reader submission (via /share) fits a theme, drop a note under it.
 
+## How a post works (frontmatter)
+
+Every post is an `.mdx` file in `content/blog/`. The block at the top controls
+everything. To put a post in a series, set `series` and `order`:
+
+```yaml
+---
+title: "The post title"
+date: "2026-06-26"          # newest sorts first on the blog index
+summary: "One or two sentences shown on the card and in search."
+tags: ["cameroon", "payments"]   # become clickable tag pages
+series: "Notes from the Grassfields"   # optional, groups posts
+order: 3                    # optional, position within the series
+---
+```
+
+- Reuse the exact same `series` string to add a post to an existing series. A
+  new string creates a new series automatically (with its own /blog/series page).
+- `order` sets reading order inside a series; without it, posts fall back to date.
+- Reading time and the table of contents are generated automatically.
+- Current series: **Notes from the Grassfields** (the Cameroon story) and
+  **Engineering** (the build/craft posts).
+
 ## Published
 
 - [x] **Building software from Cameroon: the part of the job nobody warns you about** — flagship overview (series). `content/blog/building-software-from-cameroon.mdx`
