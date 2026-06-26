@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import LikeButton from "@/components/blog/LikeButton";
+import ShareButton from "@/components/blog/ShareButton";
+import Comments from "@/components/blog/Comments";
 import { getAllPosts, getPostBySlug, formatDate } from "@/lib/blog";
 import { blogPostingSchema, jsonLdProps } from "@/lib/structured-data";
 
@@ -85,6 +88,13 @@ export default async function BlogPost({
               <MDXRemote source={post.content} />
             </div>
           </div>
+
+          <div className="mt-8 flex items-center gap-3">
+            <LikeButton slug={slug} />
+            <ShareButton title={post.title} />
+          </div>
+
+          <Comments slug={slug} />
         </article>
       </main>
       <Footer />

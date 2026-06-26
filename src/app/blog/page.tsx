@@ -20,9 +20,27 @@ export default function BlogIndex() {
           The <span className="gradient-text">blog</span>
         </h1>
         <p className="mt-4 max-w-xl text-muted">
-          Notes on engineering, open source, and the occasional career
-          reflection.
+          Notes on the things I build — backends, microservices, messaging, and
+          the occasional war story — alongside an honest series about what it
+          takes to develop software from Cameroon.
         </p>
+
+        <Link
+          href="/share"
+          className="glass glass-hover mt-8 flex flex-col gap-1 rounded-2xl p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+        >
+          <span>
+            <span className="font-semibold text-foreground">
+              Are you a developer in Cameroon?
+            </span>{" "}
+            <span className="text-muted">
+              Share your story — it might shape what I write next.
+            </span>
+          </span>
+          <span className="shrink-0 text-sm font-medium text-accent">
+            Share yours →
+          </span>
+        </Link>
 
         {posts.length === 0 ? (
           <p className="mt-12 text-muted">No posts yet — check back soon.</p>
@@ -41,6 +59,18 @@ export default function BlogIndex() {
                     <p className="mt-2 leading-relaxed text-muted">
                       {post.summary}
                     </p>
+                    {post.tags.length > 0 && (
+                      <ul className="mt-4 flex flex-wrap gap-2">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <li
+                            key={tag}
+                            className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[11px] text-muted"
+                          >
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     <span className="mt-4 inline-block text-sm font-medium text-accent">
                       Read more →
                     </span>

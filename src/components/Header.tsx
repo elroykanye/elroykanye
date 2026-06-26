@@ -10,6 +10,7 @@ const navItems = [
   { label: "Experience", href: "/#experience" },
   { label: "Arcade", href: "/#play" },
   { label: "Blog", href: "/blog" },
+  { label: "Share", href: "/share" },
   { label: "Contact", href: "/#contact" },
 ];
 

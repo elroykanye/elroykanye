@@ -216,6 +216,41 @@ export const currently: string[] = [
   "Collecting Grafana dashboards like trading cards.",
 ];
 
+// ---- "Notes from the Mountain": Cameroonian developer stories ----
+
+// Content for the /share page where readers submit their own stories.
+// Submissions are saved to MongoDB (see src/lib/mongodb.ts) and reviewed in /admin.
+export type StoryTheme = { title: string; prompt: string };
+
+export const stories = {
+  // Public prompts shown on /share to spark submissions. Your private
+  // editorial backlog lives in content/ideas.md, this is just for visitors.
+  intro:
+    "I'm writing a series about what it actually takes to build software from Cameroon. The opportunities, the obstacles, and the ridicule we rarely say out loud. If you've lived any of it, your story can help someone else feel less alone, and shape what I write next.",
+  themes: [
+    {
+      title: "Getting paid",
+      prompt:
+        "Wrestled with wire transfers, crypto, or fees eating your money? Tell me how you actually get paid.",
+    },
+    {
+      title: "The ridicule tax",
+      prompt:
+        "Been doubted, lowballed, or told a Cameroonian dev can't really do this? What happened, and how did you respond?",
+    },
+    {
+      title: "Internet you can't trust",
+      prompt:
+        "Outages, power cuts, the 2017 to 2018 shutdown. How has unreliable connection shaped how you work?",
+    },
+    {
+      title: "Breaking in",
+      prompt:
+        "Landing that first remote role or international client. What opened the door, or slammed it?",
+    },
+  ] as StoryTheme[],
+} as const;
+
 // `icon` maps to a lucide icon in Principles.tsx.
 export type Principle = { icon: string; title: string; body: string };
 

@@ -1,0 +1,103 @@
+---
+title: "How Cameroonian developers actually get paid"
+date: "2026-06-20"
+summary: "Stripe won't pay you out. PayPal won't let you withdraw. Here's the real-world stack Cameroonian devs use to turn international work into money in their pocket — and what each option costs."
+tags: ["cameroon", "payments", "freelancing", "fintech"]
+---
+
+If you build software from Cameroon and work with clients abroad, you run into a
+wall that has nothing to do with your skills: **getting the money is harder than
+earning it.** This is the practical companion to my
+[broader post on the challenges](/blog/building-software-from-cameroon) — less
+philosophy, more "here is what actually works."
+
+A disclaimer up front: I'm an engineer, not a financial advisor, and the rules
+shift constantly. Treat this as a map of the terrain, not tax advice.
+
+## Why the obvious options don't work
+
+**Stripe.** The default payment rails for a huge chunk of the internet — and
+largely closed to us. Stripe operates in only a handful of African countries
+(mostly South Africa and Kenya), and it requires a bank account in a country
+where it operates to pay you out. Even Nigeria, which sits in Stripe's
+"extended network" through Paystack, can *collect* payments but **cannot receive
+Stripe payouts** to a local bank account. Cameroon isn't in the club at all.
+
+**PayPal.** It "supports" 200+ countries, which sounds great until you read the
+fine print: not all of them can withdraw a balance in USD/EUR to a local bank.
+For many of us PayPal is a roach motel — money checks in, but getting it *out*
+in spendable local currency means jumping to yet another service.
+
+**The intermediary trap.** So people route through a middleman who has a foreign
+account. It works, but you pay for it twice: a chunk vanishes in fees (10% is a
+realistic figure once everyone's taken their cut), and the rest lands late at an
+exchange rate that quietly shaves off more. You earned $1,000 and somehow
+$1,150 of effort produced $850 of spendable money.
+
+## What people actually use
+
+Here's the stack that works in practice, roughly in order of how often I see it.
+
+### Payoneer
+
+The workhorse for African freelancers. It gives you receiving accounts in USD,
+EUR, GBP and others, integrates with marketplaces (Upwork, Fiverr) and many
+direct clients, and lets you withdraw to a local bank or spend via its card.
+Fees aren't zero, but they're predictable — which, after the intermediary
+lottery, feels like a luxury.
+
+### Wise (formerly TransferWise)
+
+Great when a client is willing to send a normal bank transfer. You receive in
+USD/EUR/GBP, convert at the real mid-market rate with low, transparent fees, and
+move it onward. The catch is regional: receiving-account availability and local
+withdrawal options vary, so confirm what's actually open for Cameroon before you
+promise a client this route.
+
+### Mobile Money (MTN MoMo, Orange Money)
+
+This is the local backbone — how money actually moves between people here. You
+rarely receive *international* income directly into MoMo, but it's almost always
+the **last mile**: Payoneer/Wise/USD → local bank or agent → MoMo → your daily
+life. With ~93% of the population on mobile connections and a growing fintech
+sector (dozens of active startups doing payments, savings, and lending), MoMo is
+the rail you'll touch every single day even if it's not where the dollars first
+land.
+
+### Stablecoins (USDT / USDC)
+
+The fast-growing escape hatch. A dollar-pegged stablecoin moves at internet
+speed, ignores the banking gatekeepers, and lets a client pay you in minutes
+instead of days. The trade-off is real: you take on the friction and risk of
+on-ramping and off-ramping (usually via a local exchange or P2P), you need to be
+disciplined about security, and "crypto" carries regulatory uncertainty. Used
+carefully, it solves the exact problem the traditional rails create. Used
+carelessly, it creates new ones.
+
+## A workable setup
+
+If I were starting from zero today, I'd build it like this:
+
+1. **Open Payoneer** — your primary way to receive from marketplaces and most
+   direct clients.
+2. **Add Wise** — for clients who prefer a clean bank transfer and a great rate.
+3. **Keep Mobile Money ready** — it's your last mile into local spending, no
+   matter where the money originates.
+4. **Learn stablecoins as a fallback** — for the client who needs to pay *now*,
+   or when the traditional routes are being difficult.
+
+Spread across two or three of these and no single failure point can hold your
+income hostage. That redundancy isn't paranoia; it's the same instinct that
+makes you put a service behind a load balancer.
+
+## The point
+
+None of this is in a bootcamp syllabus, and none of it makes you a better
+programmer. But if you're building from here, **your payment stack is part of
+your tech stack.** Treat it with the same seriousness — design it once, make it
+resilient, and get back to the work you actually love.
+
+---
+
+*Have a payment war story — a fee that stung, a setup that finally worked? I'm
+collecting these for the series. [Share yours here.](/share)*
