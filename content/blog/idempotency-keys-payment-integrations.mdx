@@ -1,56 +1,41 @@
 ---
 title: "The exactly-once lie: idempotency keys and how I keep payments honest"
 date: "2026-06-23"
-summary: "Networks retry. Queues redeliver. Users double-click. If your payment endpoint can't tell a retry from a new request, you'll eventually pay someone twice. Here's the pattern I reach for every time."
+summary: "Networks retry. Queues redeliver. Users double-click. If your payment endpoint can't tell a retry from a new request, you will eventually pay someone twice. Here is the pattern I reach for every time."
 tags: ["engineering", "backend", "distributed-systems", "kotlin"]
 series: "Engineering"
 order: 1
 ---
 
-Most of my career has been spent on systems where money moves — payroll, bank
-integrations, the kind of code where a bug doesn't just throw a stack trace, it
-pays a stranger twice. And the single hardest lesson from that work is also the
-most boring-sounding one:
+Most of my career has been spent on systems where money moves. Payroll, bank integrations, the kind of code where a bug does not just throw a stack trace, it pays a stranger twice. The single hardest lesson from that work is also the most boring sounding one:
 
-> "Exactly once" is a lie you tell yourself. Plan for "at least once" and make
-> the duplicates harmless.
+> "Exactly once" is a lie you tell yourself. Plan for "at least once" and make the duplicates harmless.
 
-Let me explain why, and the one pattern that has saved me more times than any
-clever abstraction.
+Here is why, and the one pattern that has saved me more times than any clever abstraction.
 
 ## Why "exactly once" doesn't exist
 
-Picture the simplest possible flow: your service calls a bank's API to send a
-payment. You fire the request. The bank processes it. And then — right before
-the `200 OK` reaches you — the connection drops.
+Picture the simplest possible flow. Your service calls a bank API to send a payment. You fire the request. The bank processes it. And then, right before the `200 OK` reaches you, the connection drops.
 
-What happened? You have no idea. Maybe the bank sent the money and you lost the
-response. Maybe the request never arrived. From where you're standing, **a
-successful payment and a failed one look identical.**
+What happened? You have no idea. Maybe the bank sent the money and you lost the response. Maybe the request never arrived. From where you are standing, a successful payment and a failed one look identical.
 
-Now multiply that uncertainty across everything that *retries* in a real system:
+Now multiply that uncertainty across everything that retries in a real system:
 
 - HTTP clients retry on timeouts.
-- Kafka and RabbitMQ redeliver messages when a consumer doesn't ack in time.
+- Kafka and RabbitMQ redeliver messages when a consumer does not ack in time.
 - Load balancers and gateways replay requests.
 - Users double-click the "Pay" button because the spinner felt slow.
 
-Every one of those is a *correctness* feature for availability and a *footgun*
-for money. The network doesn't promise to deliver your request once. It promises
-to deliver it *at least* once, and quietly leaves the rest to you.
+Every one of those is a correctness feature for availability and a footgun for money. The network does not promise to deliver your request once. It promises to deliver it at least once, and quietly leaves the rest to you.
 
 ## The fix: make the request carry its own identity
 
-An idempotency key is just a unique token the **caller** generates for a logical
-operation and reuses on every retry of that same operation. The server promises:
-*for a given key, I will perform the work at most once, and return the same
-result every time you ask.*
+An idempotency key is a unique token the caller generates for a logical operation and reuses on every retry of that same operation. The server makes a promise back: for a given key, I will do the work at most once, and return the same result every time you ask.
 
-The client side is trivial — generate the key once, before the first attempt,
-and hold it across retries:
+The client side is trivial. Generate the key once, before the first attempt, and hold it across retries:
 
 ```kotlin
-// Generate ONCE per logical operation — not per HTTP attempt.
+// Generate ONCE per logical operation, not per HTTP attempt.
 val idempotencyKey = UUID.randomUUID().toString()
 
 retry(times = 3) {
@@ -61,10 +46,7 @@ retry(times = 3) {
 }
 ```
 
-The interesting half lives on the server. The naive version — "check if the key
-exists, then insert" — has a race: two redeliveries arriving at once both pass
-the check, and you're back to paying twice. The fix is to let the **database**
-be the referee with a unique constraint:
+The interesting half lives on the server. The naive version, check if the key exists then insert, has a race. Two redeliveries arriving at once both pass the check, and you are back to paying twice. The fix is to let the database be the referee with a unique constraint:
 
 ```kotlin
 @Transactional
@@ -82,45 +64,27 @@ fun process(key: String, request: PaymentRequest): PaymentResult {
         payment.markComplete(result)
         payment.toResult()
     } catch (e: DataIntegrityViolationException) {
-        // Lost the insert race — a concurrent request already claimed this key.
-        // Return its result instead of doing the work again.
+        // Lost the insert race. A concurrent request already claimed this key,
+        // so return its result instead of doing the work again.
         paymentRepository.findByIdempotencyKey(key)!!.toResult()
     }
 }
 ```
 
-The unique constraint is the whole trick. You're not *checking* for duplicates;
-you're making them *impossible to commit*, then handling the rejection
-gracefully.
+The unique constraint is the whole trick. You are not checking for duplicates, you are making them impossible to commit, then handling the rejection gracefully.
 
 ## The details that bite you later
 
-Getting the happy path right is easy. These are the things I've learned to nail
-down before shipping:
+Getting the happy path right is easy. These are the things I have learned to nail down before shipping:
 
-- **Store the response, not just the key.** A retry should get the *same answer*
-  as the original — same payment ID, same status — not a fresh `409`. The caller
-  shouldn't have to care that it was a retry.
-- **Persist the key *before* the side effect, in the same transaction as the
-  work.** If you call the bank first and crash before recording the key, you've
-  lost the race against your own retry.
-- **Give keys a TTL.** They can't live forever. Pick a window that comfortably
-  outlasts your longest retry policy (24–72h is usually plenty) and expire them.
-- **Scope the key correctly.** An idempotency key for "pay invoice #42" should be
-  derived from something stable about *that invoice*, so a genuine retry reuses
-  it but a legitimately new payment gets a fresh one.
-- **Make it boring.** This logic should be a thin, well-tested wrapper that every
-  money-moving endpoint shares — not something each feature reinvents.
+- **Store the response, not just the key.** A retry should get the same answer as the original, same payment ID, same status, not a fresh `409`. The caller should not have to care that it was a retry.
+- **Persist the key before the side effect, in the same transaction as the work.** If you call the bank first and crash before recording the key, you have lost the race against your own retry.
+- **Give keys a TTL.** They cannot live forever. Pick a window that comfortably outlasts your longest retry policy (24 to 72 hours is usually plenty) and expire them.
+- **Scope the key correctly.** An idempotency key for "pay invoice #42" should be derived from something stable about that invoice, so a genuine retry reuses it but a legitimately new payment gets a fresh one.
+- **Make it boring.** This logic should be a thin, well-tested wrapper that every money-moving endpoint shares, not something each feature reinvents.
 
 ## Why I keep coming back to it
 
-There's a principle underneath all of this that goes well beyond payments: in a
-distributed system you cannot control *how many times* a message arrives, so you
-control *what happens when it arrives more than once.* You stop fighting the
-network's "at least once" and instead make your operations safe to repeat.
+There is a principle under all of this that goes well beyond payments. In a distributed system you cannot control how many times a message arrives, so you control what happens when it arrives more than once. You stop fighting the network's "at least once" and instead make your operations safe to repeat.
 
-Do that, and a dropped connection at the worst possible moment stops being a
- 2am incident and becomes a non-event — the retry sails through, the key says
-"already done," and nobody gets paid twice. That's the whole job, really:
-turning scary uncertainty into something boring. Boring is good. Boring means
-people got paid the right amount.
+Do that, and a dropped connection at the worst possible moment stops being a 2am incident and becomes a non-event. The retry sails through, the key says "already done," and nobody gets paid twice. That is the actual job a lot of the time. Turning scary uncertainty into something boring. Boring means people got paid the right amount.
