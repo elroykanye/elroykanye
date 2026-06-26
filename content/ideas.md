@@ -1,4 +1,4 @@
-# Editorial backlog — "Notes from the Mountain"
+# Editorial backlog: "Notes from the Grassfields"
 
 > Private. Not rendered on the site. This is my running catalog of post ideas
 > about the Cameroonian (and broader African) developer experience.

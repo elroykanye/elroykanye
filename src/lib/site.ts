@@ -216,7 +216,7 @@ export const currently: string[] = [
   "Collecting Grafana dashboards like trading cards.",
 ];
 
-// ---- "Notes from the Mountain": Cameroonian developer stories ----
+// ---- "Notes from the Grassfields": Cameroonian developer stories ----
 
 // Content for the /share page where readers submit their own stories.
 // Submissions are saved to MongoDB (see src/lib/mongodb.ts) and reviewed in /admin.

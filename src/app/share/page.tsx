@@ -17,7 +17,7 @@ export default function SharePage() {
     <>
       <Header />
       <main className="mx-auto w-full max-w-3xl flex-1 px-5 pb-20 pt-32">
-        <p className="font-mono text-sm text-accent-2">Notes from the Mountain</p>
+        <p className="font-mono text-sm text-accent-2">Notes from the Grassfields</p>
         <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
           Share your <span className="gradient-text">story</span>
         </h1>
