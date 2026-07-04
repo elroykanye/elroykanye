@@ -36,6 +36,7 @@ order: 3                    # optional, position within the series
 - [x] **The exactly-once lie: idempotency keys** — engineering. `content/blog/idempotency-keys-payment-integrations.mdx`
 - [x] **Maayo: building an offline-first sync library** — engineering. `content/blog/maayo-offline-first-sync-library.mdx`
 - [x] **How Serena made Claude Code usable in a 100-microservice codebase** — engineering. `content/blog/serena-claude-code-large-codebase.mdx`
+- [x] **Eight teams, three days, one demo day: the Bamenda Community Challenge** — series, ecosystem win. `content/blog/bamenda-community-challenge.mdx`
 
 ## Engineering / things I build (general dev blog)
 
