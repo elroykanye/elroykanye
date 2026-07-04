@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PostCard from "@/components/blog/PostCard";
 import { getAllSeries, getSeriesBySlug } from "@/lib/blog";
+import { breadcrumbSchema, jsonLdProps } from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -36,9 +38,16 @@ export default async function SeriesPage({
   const series = getSeriesBySlug(slug);
   if (!series) notFound();
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", url: siteConfig.url },
+    { name: "Blog", url: `${siteConfig.url}/blog` },
+    { name: series.name, url: `${siteConfig.url}/blog/series/${slug}` },
+  ]);
+
   return (
     <>
       <Header />
+      <script {...jsonLdProps(breadcrumbs)} />
       <main className="mx-auto w-full max-w-4xl flex-1 px-5 pb-16 pt-32">
         <Link
           href="/blog"

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { Layers } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Notes on building software from Cameroon, backend engineering, and the occasional war story.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogIndex() {
@@ -79,7 +81,9 @@ export default function BlogIndex() {
           {docs.length === 0 ? (
             <p className="mt-6 text-muted">No posts yet, check back soon.</p>
           ) : (
-            <BlogExplorer docs={docs} tags={tags} />
+            <Suspense fallback={null}>
+              <BlogExplorer docs={docs} tags={tags} />
+            </Suspense>
           )}
         </section>
       </main>

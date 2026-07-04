@@ -41,9 +41,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.role}`,
     description: siteConfig.tagline,
+    site: siteConfig.twitterHandle,
+    creator: siteConfig.twitterHandle,
   },
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": `${siteConfig.url}/feed.xml`,
+    },
   },
   robots: {
     index: true,

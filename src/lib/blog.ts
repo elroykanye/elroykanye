@@ -12,6 +12,7 @@ export type PostMeta = {
   slug: string;
   title: string;
   date: string; // ISO string, e.g. "2026-06-24"
+  updated?: string; // ISO string, set only when a post is substantively revised
   summary: string;
   tags: string[];
   series?: string;
@@ -39,6 +40,9 @@ function readPostFile(fileName: string): Post {
     date: data.date
       ? new Date(data.date).toISOString().slice(0, 10)
       : "1970-01-01",
+    updated: data.updated
+      ? new Date(data.updated).toISOString().slice(0, 10)
+      : undefined,
     summary: data.summary ?? "",
     tags: Array.isArray(data.tags) ? data.tags : [],
     series: typeof data.series === "string" ? data.series : undefined,
@@ -133,6 +137,24 @@ export function getSeriesForPost(slug: string): SeriesContext | null {
     }
   }
   return null;
+}
+
+// Posts sharing the most tags with `slug`, ties broken by recency. Falls
+// back to the most recent other posts if nothing shares a tag.
+export function getRelatedPosts(slug: string, limit = 3): PostMeta[] {
+  const all = getAllPosts();
+  const current = all.find((p) => p.slug === slug);
+  if (!current) return [];
+
+  const others = all.filter((p) => p.slug !== slug);
+  const scored = others
+    .map((post) => ({
+      post,
+      shared: post.tags.filter((t) => current.tags.includes(t)).length,
+    }))
+    .sort((a, b) => b.shared - a.shared || (a.post.date < b.post.date ? 1 : -1));
+
+  return scored.slice(0, limit).map((s) => s.post);
 }
 
 // ---- Tags ----

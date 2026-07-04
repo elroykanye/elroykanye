@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Fuse from "fuse.js";
 import { Search, X } from "lucide-react";
 import { slugify } from "@/lib/blog-utils";
@@ -14,7 +15,10 @@ export default function BlogExplorer({
   docs: SearchDoc[];
   tags: TagInfo[];
 }) {
-  const [query, setQuery] = useState("");
+  // Seeds from ?q=, so the WebSite SearchAction schema (schema.org) points
+  // at a URL that actually pre-fills a search rather than a dead link.
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
   const fuse = useMemo(

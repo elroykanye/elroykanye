@@ -18,6 +18,8 @@ export const siteConfig = {
   jobTitle: "Technical Lead & Full Stack Engineer",
   resumeUrl: "/resume.pdf",
   yearsExperience: "4+",
+  // Used for the twitter:site/twitter:creator meta tags.
+  twitterHandle: "@elroykanye",
   // Paste verification tokens here after registering the domain.
   // Google: https://search.google.com/search-console   Bing: https://www.bing.com/webmasters
   verification: {

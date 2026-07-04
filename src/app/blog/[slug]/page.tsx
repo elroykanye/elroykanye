@@ -14,11 +14,19 @@ import {
   getAllPosts,
   getPostBySlug,
   getSeriesForPost,
+  getRelatedPosts,
   extractToc,
   formatDate,
   slugify,
 } from "@/lib/blog";
-import { blogPostingSchema, jsonLdProps } from "@/lib/structured-data";
+import {
+  blogPostingSchema,
+  breadcrumbSchema,
+  jsonLdProps,
+} from "@/lib/structured-data";
+import { siteConfig } from "@/lib/site";
+import PostCard from "@/components/blog/PostCard";
+import MdxImage from "@/components/blog/MdxImage";
 
 type Params = { slug: string };
 
@@ -38,6 +46,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.summary,
+    keywords: post.tags,
     alternates: {
       canonical: `/blog/${slug}`,
     },
@@ -47,7 +56,13 @@ export async function generateMetadata({
       title: post.title,
       description: post.summary,
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       tags: post.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary,
     },
   };
 }
@@ -63,11 +78,27 @@ export default async function BlogPost({
 
   const series = getSeriesForPost(slug);
   const toc = extractToc(post.content);
+  const related = getRelatedPosts(slug);
+
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", url: siteConfig.url },
+    { name: "Blog", url: `${siteConfig.url}/blog` },
+    ...(series
+      ? [
+          {
+            name: series.name,
+            url: `${siteConfig.url}/blog/series/${series.slug}`,
+          },
+        ]
+      : []),
+    { name: post.title, url: `${siteConfig.url}/blog/${slug}` },
+  ]);
 
   return (
     <>
       <Header />
       <script {...jsonLdProps(blogPostingSchema(post))} />
+      <script {...jsonLdProps(breadcrumbs)} />
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 pb-16 pt-32">
         <Link
           href="/blog"
@@ -151,6 +182,7 @@ export default async function BlogPost({
             >
               <MDXRemote
                 source={post.content}
+                components={{ img: MdxImage }}
                 options={{ mdxOptions: { rehypePlugins: [rehypeSlug] } }}
               />
             </div>
@@ -199,6 +231,21 @@ export default async function BlogPost({
           </div>
 
           <Comments slug={slug} />
+
+          {related.length > 0 && (
+            <section className="mt-12">
+              <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">
+                Related posts
+              </h2>
+              <ul className="mt-4 grid gap-4">
+                {related.map((p) => (
+                  <li key={p.slug}>
+                    <PostCard post={p} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </article>
       </main>
       <Footer />

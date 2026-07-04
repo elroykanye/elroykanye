@@ -28,7 +28,9 @@ export function personSchema() {
   };
 }
 
-// schema.org WebSite — declares the canonical site and its name.
+// schema.org WebSite — declares the canonical site and its name, and
+// registers the on-site search (BlogExplorer, wired to read ?q=) so Google
+// can offer a Sitelinks Search Box.
 export function websiteSchema() {
   return {
     "@context": "https://schema.org",
@@ -36,6 +38,14 @@ export function websiteSchema() {
     name: siteConfig.name,
     url: siteConfig.url,
     author: { "@type": "Person", name: siteConfig.fullName },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
@@ -48,7 +58,7 @@ export function blogPostingSchema(post: PostMeta) {
     headline: post.title,
     description: post.summary,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     url,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     keywords: post.tags.join(", "),
@@ -58,6 +68,21 @@ export function blogPostingSchema(post: PostMeta) {
       name: siteConfig.fullName,
       url: siteConfig.url,
     },
+  };
+}
+
+// schema.org BreadcrumbList — surfaces the page's place in the site
+// hierarchy in search results. `items` is home-to-current, in order.
+export function breadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
   };
 }
 
