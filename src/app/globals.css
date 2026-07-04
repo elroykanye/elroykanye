@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@property --hue-shift {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 :root {
   /* Dark-first aurora palette */
   --background: #05060a;
@@ -8,9 +14,13 @@
   --foreground: #e8eaf2;
   --muted: #9aa3b8;
   --border: rgba(255, 255, 255, 0.08);
-  --accent: #7c83ff; /* indigo */
-  --accent-2: #22d3ee; /* cyan */
-  --accent-3: #c084fc; /* violet */
+  /* --hue-shift is nudged by AccentDrift.tsx: a random start, a slow
+     continuous drift, and a nudge on each navigation. All three accents
+     rotate together so they keep reading as "the aurora", just shifted. */
+  --hue-shift: 0;
+  --accent: hsl(calc(237 + var(--hue-shift)) 100% 74%); /* indigo */
+  --accent-2: hsl(calc(188 + var(--hue-shift)) 86% 53%); /* cyan */
+  --accent-3: hsl(calc(270 + var(--hue-shift)) 95% 75%); /* violet */
 }
 
 @theme inline {
