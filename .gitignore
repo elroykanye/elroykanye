@@ -43,3 +43,6 @@ next-env.d.ts
 
 # source resume (the published copy lives in /public/resume.pdf)
 /Elroy Ankelmbom Kimbi Yonghabichia Resume.pdf
+
+# local session handoff note, not part of the site
+/SESSION-SUMMARY.md

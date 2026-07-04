@@ -1,0 +1,50 @@
+---
+title: "How Serena made Claude Code usable in a 100-microservice codebase"
+date: "2026-06-26"
+summary: "I knew a hundred-microservice system well, but there were deeper layers I had never had to touch, and Claude Code kept burning its whole context just digging them out. Serena fixed that. Here is how, and the gotchas to watch for."
+tags: ["engineering", "claude", "ai-tools", "mcp", "developer-tools"]
+series: "Engineering"
+order: 3
+---
+
+About six months ago I needed to go deeper into a codebase I already knew well. Over a hundred microservices. Some Python, some .NET. I knew the system, I had worked in it for a while, but there were deeper layers I had simply never had to touch. How a particular service was actually wired, where something was really defined. That is where my map ran out.
+
+I reached for Claude Code, like I usually do. And I watched it struggle in a very specific way.
+
+## The context-burn problem
+
+Claude Code is great until the codebase gets big. To understand where something lives, it reads files. Whole files. Then more files. In a hundred-service system that means it burns through its context window just building a picture of the place, and by the time it has read enough to be useful, it has half-forgotten where it started. You feel it as slow, expensive, and a little dim. Not because the model is dim, but because it is trying to hold an ocean in a cup.
+
+That is the wall everyone hits with AI on a real, large codebase. The model does not have an IDE. It cannot jump to a definition or list every reference. It just reads, and reading does not scale.
+
+## What Serena actually is
+
+Serena (oraios/serena) is an open-source MCP toolkit that hands Claude the tools an IDE would have. Instead of reading entire files, Claude can work at the symbol level. Find a symbol, find its definition, find everywhere it is used, edit one function cleanly. It does this through the Language Server Protocol, the same machinery your editor uses, so it understands code structurally instead of as a wall of text. It is free, it speaks over 40 languages, and it plugs straight into Claude Code.
+
+The short version: it gives Claude eyes for code.
+
+## How it changed my work
+
+With Serena in the loop, getting oriented in that hundred-service mess stopped being a context bonfire.
+
+I could ask Claude to find where a project was defined, trace how a service was wired up, and pull the actual structure and documentation behind the parts I had never had to dig into, without it swallowing the entire repo to answer a simple question. It went and looked things up the way I would in an IDE, precisely, then came back with the answer. Getting from "I know this system" to "I know how this corner of it actually works" went from days of blind spelunking to an afternoon, with Claude doing the legwork.
+
+It is faster, it is cheaper on context, and it genuinely changed how I work with Claude day to day. Once you have used it on a big codebase, going back to "just read the files" feels like coding blindfolded.
+
+## Setup, and the gotchas
+
+Setup is straightforward. You install uv, add the Serena MCP server to Claude Code, point it at your project, and let it do its onboarding pass. The exact commands live in the repo and they keep them current, so follow those rather than anything I paste here that might go stale.
+
+The rough edges are worth knowing before you start, because they are mostly about the language server underneath:
+
+- **First run is slow.** Serena has to start a language server and index the project. On something huge, give it a minute and let it finish before you judge it.
+- **Multi-language repos need care.** Mine was Python and .NET, and each language needs its own working language server. If the .NET side cannot start (wrong SDK, missing pieces), Serena quietly falls back to plain file reading and you lose the whole point. Check that the semantic tools are actually firing, not just the dumb ones.
+- **Point it at the right root.** With a hundred services, do not aim it at the entire universe at once. Activate the project or service you are actually working in so the index stays sharp.
+- **Nudge Claude to use the tools.** Sometimes it still wants to just read a file out of habit. A small reminder to use Serena's symbol tools keeps it honest, and it is worth glancing at the onboarding notes it writes about your project.
+- **It can edit, so review it.** It is a real coding agent with hands on your code. Treat its changes like any pull request.
+
+## Verdict
+
+Worth the setup, easily, if you work in anything large or anything you do not already know by heart. For a tiny project you will barely feel it. For a hundred microservices you have never seen before, it is the difference between Claude guessing and Claude knowing.
+
+I came for a fix to context burn. I stayed because it made the whole loop faster. If you live in big codebases, go look: [github.com/oraios/serena](https://github.com/oraios/serena).

@@ -35,6 +35,7 @@ order: 3                    # optional, position within the series
 - [x] **How Cameroonian developers actually get paid** — payments deep dive (series). `content/blog/how-cameroonian-developers-get-paid.mdx`
 - [x] **The exactly-once lie: idempotency keys** — engineering. `content/blog/idempotency-keys-payment-integrations.mdx`
 - [x] **Maayo: building an offline-first sync library** — engineering. `content/blog/maayo-offline-first-sync-library.mdx`
+- [x] **How Serena made Claude Code usable in a 100-microservice codebase** — engineering. `content/blog/serena-claude-code-large-codebase.mdx`
 
 ## Engineering / things I build (general dev blog)
 
