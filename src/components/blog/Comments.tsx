@@ -133,7 +133,7 @@ export default function Comments({ slug }: { slug: string }) {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 disabled:opacity-60"
             >
               <Send className="h-4 w-4" strokeWidth={2} />
               {status === "sending" ? "Posting…" : "Post"}

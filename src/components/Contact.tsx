@@ -21,7 +21,7 @@ export default function Contact() {
 
           <a
             href={`mailto:${siteConfig.email}`}
-            className="mt-8 inline-block rounded-xl bg-accent px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:shadow-accent/50"
+            className="mt-8 inline-block rounded-xl bg-accent px-7 py-3.5 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:shadow-accent/50"
           >
             {siteConfig.email}
           </a>

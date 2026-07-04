@@ -164,7 +164,7 @@ export default function StoryForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-white shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:shadow-accent/50 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:shadow-accent/50 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
       >
         <Send className="h-4 w-4" strokeWidth={2} />
         {status === "sending" ? "Sending…" : "Share my story"}

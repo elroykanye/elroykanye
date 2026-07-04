@@ -38,7 +38,7 @@ export default function Games() {
                 onClick={() => setActive(tab.id)}
                 className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
                   active === tab.id
-                    ? "bg-accent text-white shadow-lg shadow-accent/30"
+                    ? "bg-accent text-accent-ink shadow-lg shadow-accent/30"
                     : "border border-border bg-white/5 text-muted hover:text-foreground"
                 }`}
               >

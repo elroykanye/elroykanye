@@ -42,7 +42,7 @@ export default function NumberGuess() {
         <button
           type="submit"
           disabled={won}
-          className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+          className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-transform hover:-translate-y-0.5 disabled:opacity-60"
         >
           Guess
         </button>

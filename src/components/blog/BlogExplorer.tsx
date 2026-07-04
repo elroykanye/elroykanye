@@ -78,7 +78,7 @@ export default function BlogExplorer({
             onClick={() => setActiveTag(null)}
             className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
               activeTag === null
-                ? "border-accent bg-accent text-white"
+                ? "border-accent bg-accent text-accent-ink"
                 : "border-border bg-white/5 text-muted hover:text-foreground"
             }`}
           >
@@ -91,7 +91,7 @@ export default function BlogExplorer({
               onClick={() => setActiveTag((cur) => (cur === t.slug ? null : t.slug))}
               className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
                 activeTag === t.slug
-                  ? "border-accent bg-accent text-white"
+                  ? "border-accent bg-accent text-accent-ink"
                   : "border-border bg-white/5 text-muted hover:text-foreground"
               }`}
             >

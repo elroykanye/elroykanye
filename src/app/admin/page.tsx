@@ -95,7 +95,7 @@ export default function AdminPage() {
         <button
           type="button"
           onClick={signIn}
-          className="mt-4 rounded-xl bg-accent px-5 py-3 text-sm font-medium text-white shadow-lg shadow-accent/30"
+          className="mt-4 rounded-xl bg-accent px-5 py-3 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30"
         >
           Sign in
         </button>

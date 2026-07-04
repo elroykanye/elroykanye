@@ -47,7 +47,7 @@ export default function Hero() {
         <div className="mt-9 flex flex-wrap items-center gap-3">
           <a
             href="#contact"
-            className="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-white shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:shadow-accent/50"
+            className="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:shadow-accent/50"
           >
             Get in touch
           </a>

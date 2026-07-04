@@ -165,7 +165,7 @@ export default function BugSquash() {
             <button
               type="button"
               onClick={start}
-              className="mt-3 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5"
+              className="mt-3 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5"
             >
               {over ? "Play again" : "Start"}
             </button>

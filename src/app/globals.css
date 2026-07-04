@@ -15,12 +15,27 @@
   --muted: #9aa3b8;
   --border: rgba(255, 255, 255, 0.08);
   /* --hue-shift is nudged by AccentDrift.tsx: a random start, a slow
-     continuous drift, and a nudge on each navigation. All three accents
-     rotate together so they keep reading as "the aurora", just shifted. */
+     continuous drift, and a nudge on each navigation. OKLCH keeps
+     perceived lightness consistent as hue rotates (unlike HSL, where
+     blue and yellow at the same numbers read as very different
+     brightnesses) and the three base hues are spread wide (blue-violet /
+     teal / warm orange) so the palette reads as genuinely varied rather
+     than shades of one family. --accent-ink is recomputed alongside
+     --accent for real contrast on solid accent buttons. */
   --hue-shift: 0;
-  --accent: hsl(calc(237 + var(--hue-shift)) 100% 74%); /* indigo */
-  --accent-2: hsl(calc(188 + var(--hue-shift)) 86% 53%); /* cyan */
-  --accent-3: hsl(calc(270 + var(--hue-shift)) 95% 75%); /* violet */
+  --accent: oklch(78% 0.15 calc(265 + var(--hue-shift))); /* blue-violet */
+  --accent-2: oklch(82% 0.13 calc(165 + var(--hue-shift))); /* teal */
+  --accent-3: oklch(80% 0.17 calc(35 + var(--hue-shift))); /* warm orange */
+  --accent-ink: var(--background);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    /* Keeps the property "live" for the rendering engine so elements that
+       only reference it via inheritance (e.g. gradient-clipped text with
+       no animation of their own) reliably repaint on each update. */
+    transition: --hue-shift 250ms linear;
+  }
 }
 
 @theme inline {
@@ -32,6 +47,7 @@
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
   --color-accent-3: var(--accent-3);
+  --color-accent-ink: var(--accent-ink);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

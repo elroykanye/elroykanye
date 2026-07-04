@@ -163,7 +163,7 @@ export default function MemoryMatch() {
             <button
               type="button"
               onClick={reset}
-              className="mt-3 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5"
+              className="mt-3 rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5"
             >
               {won ? "Play again" : "Start"}
             </button>
