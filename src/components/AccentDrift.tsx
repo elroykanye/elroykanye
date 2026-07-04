@@ -3,18 +3,22 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-// Full hue rotation every ~5 minutes at rest, plus a nudge on each navigation.
-const DRIFT_DEG_PER_MS = 360 / (5 * 60 * 1000);
-const NAV_NUDGE_DEG = 45;
+// Subtle, brand-safe breathing: hue oscillates gently around each accent's
+// true base hue (never a full rotation), so the palette always still reads
+// as this site's indigo/cyan/violet, just faintly alive.
+const AMPLITUDE_DEG = 10;
+const PERIOD_MS = 6 * 60 * 1000; // one full breath, idle
+const PHASE_PER_MS = (2 * Math.PI) / PERIOD_MS;
+const NAV_PHASE_NUDGE = Math.PI / 6; // a faint nudge, not a jump
 const EASE = 0.06;
 const TICK_MS = 100;
 
 // Must match --accent's oklch() lightness/chroma/base-hue in globals.css —
 // this is the only accent used as a solid button background, so its
 // contrast against button text is what --accent-ink is picked for.
-const ACCENT_L = 0.78;
-const ACCENT_C = 0.15;
-const ACCENT_BASE_HUE = 265;
+const ACCENT_L = 0.664;
+const ACCENT_C = 0.181;
+const ACCENT_BASE_HUE = 277.6;
 
 const FOREGROUND_LUMINANCE = 0.82; // ~#e8eaf2
 const BACKGROUND_LUMINANCE = 0.0018; // ~#05060a
@@ -63,7 +67,7 @@ function inkForHue(hueShift: number) {
 
 export default function AccentDrift() {
   const pathname = usePathname();
-  const state = useRef({ current: 0, target: 0, prevPath: pathname });
+  const state = useRef({ phase: 0, displayed: 0, prevPath: pathname });
   const reducedMotion = useRef(false);
 
   useEffect(() => {
@@ -72,11 +76,12 @@ export default function AccentDrift() {
     ).matches;
 
     const root = document.documentElement;
-    const start = Math.random() * 360;
-    state.current.current = start;
-    state.current.target = start;
-    root.style.setProperty("--hue-shift", start.toFixed(2));
-    root.style.setProperty("--accent-ink", inkForHue(start));
+    const startPhase = Math.random() * Math.PI * 2;
+    const startHue = AMPLITUDE_DEG * Math.sin(startPhase);
+    state.current.phase = startPhase;
+    state.current.displayed = startHue;
+    root.style.setProperty("--hue-shift", startHue.toFixed(2));
+    root.style.setProperty("--accent-ink", inkForHue(startHue));
 
     if (reducedMotion.current) return;
 
@@ -88,10 +93,11 @@ export default function AccentDrift() {
       if (dt >= TICK_MS) {
         last = now;
         const s = state.current;
-        s.target += DRIFT_DEG_PER_MS * dt;
-        s.current += (s.target - s.current) * EASE;
-        root.style.setProperty("--hue-shift", s.current.toFixed(2));
-        root.style.setProperty("--accent-ink", inkForHue(s.current));
+        s.phase += PHASE_PER_MS * dt;
+        const target = AMPLITUDE_DEG * Math.sin(s.phase);
+        s.displayed += (target - s.displayed) * EASE;
+        root.style.setProperty("--hue-shift", s.displayed.toFixed(2));
+        root.style.setProperty("--accent-ink", inkForHue(s.displayed));
       }
       raf = requestAnimationFrame(tick);
     };
@@ -104,7 +110,7 @@ export default function AccentDrift() {
     if (pathname === state.current.prevPath) return;
     state.current.prevPath = pathname;
     if (reducedMotion.current) return;
-    state.current.target += NAV_NUDGE_DEG;
+    state.current.phase += NAV_PHASE_NUDGE;
   }, [pathname]);
 
   return null;
