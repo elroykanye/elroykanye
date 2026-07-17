@@ -1,0 +1,81 @@
+---
+title: "Barme: I wanted a lightweight object store, so I built one in Rust"
+date: "2026-07-17"
+summary: "I wanted an object store that stays small, is aware of versions, manages its own storage, compresses, and is written in Rust. I couldn't find one that fit, so I built Barme. It stores objects by content instead of by name, which turns out to hand you dedup, cheap versioning, and integrity almost for free. Here is the idea and the parts that bit me."
+tags: ["engineering", "rust", "storage", "s3", "systems"]
+series: "Engineering"
+order: 4
+---
+
+I went looking for an object store and came back empty.
+
+What I wanted was not exotic. Something light, so it runs as one small binary and does not need a cluster to hold a few gigabytes. Something that keeps memory in mind, both RAM at runtime and bytes on disk, and manages its own storage instead of growing forever. Something version-aware, so I could keep old versions of an object without paying full price for each. Compression built in. And Rust, because I wanted a single static binary I could drop anywhere and trust to stay up.
+
+MinIO is great but it is a lot, and it is walking away from the light self-hosted use case I cared about. The heavier options assume a fleet. The tiny ones do not really do versions or dedup. Nothing sat where I wanted to sit. So I built [Barme](https://github.com/elroykanye/barme).
+
+This post is two things at once. Here is what it is, and here is the one design decision the whole thing hangs on, because that decision is the reason it can be small and version-aware and self-healing at the same time.
+
+## What it is
+
+Barme is an object store with two front doors over one engine.
+
+One door speaks S3, with real SigV4 auth, so anything that already talks to S3 (the aws CLI, an SDK, your backup tool) just works against it. The other is a native JSON API for the things S3 cannot say: version history, fetch a blob by its hash, ask an object how it was stored, sync two instances, search by meaning. Both doors call the same engine, so an object you write over S3 you can inspect and diff over the native API. There is a small web console too, and a CDN door for public by-hash delivery.
+
+That is the surface. The interesting part is underneath.
+
+## The one idea: store by content, not by name
+
+Normal object stores key a blob by its name. You put `photos/cat.jpg` and the bytes live under that name. Barme does not do that. On upload it splits the file into chunks, hashes every chunk, and addresses each one by its hash. The list of chunk hashes gets a hash. The object is a small manifest pointing at that list, and the manifest has a hash too. That top hash is the object's real identity. The name `photos/cat.jpg` is just a mutable label pointing at it.
+
+If that sounds like git, that is because it is the same trick git uses for blobs. It is called content addressing, and the reason I built the whole thing around it is that once your address is the hash of the bytes, a pile of features you would normally have to build stop being features and start being consequences.
+
+**Dedup falls out.** Two objects that share a chunk share a hash, so that chunk is on disk exactly once. Upload the same file twice and the second upload writes nothing new. Upload a 200MB video and a lightly edited cut of it, and only the chunks that actually changed get stored.
+
+**Versioning gets cheap.** A new version of an object is just a new manifest pointing mostly at chunks that already exist. The old manifest still points at its chunks, which are still there, so every old version stays intact and stays addressable. Updating an object moves one mutable pointer. That is the only thing that changes. Rollback is moving it back. There is no copy, no snapshot, no version blob ballooning your disk.
+
+**Integrity stops being a separate job.** Every read is verified against the hash it was fetched by. A flipped bit on disk does not silently rot and surface months later in a file nobody can open. It gets caught the moment you read it, because the bytes no longer match their address.
+
+**Sync gets efficient.** Two instances reconcile by comparing tree roots. Same root means same data, done. Different roots, and you walk down and ship only the branches that differ. You never send a chunk the far side already has, and a manifest whose chunks are missing gets refused rather than imported half-broken.
+
+None of those four are things I sat down and wrote as features. They are what you get when the address is the content. That is why the design decision came first and everything else came after.
+
+There is one more piece that makes the whole thing survivable long term. Every object carries a manifest that records exactly how it was stored: which chunks, which codec, what fidelity, what settings. Reads are driven by that manifest, never by whatever the server config happens to be today. So I can change defaults, add a new codec next year, tune anything, and every object already on disk still restores correctly, because it carries its own instructions. The object knows how to read itself.
+
+Content addressing even pays off for the one feature that has nothing to do with hashing. I want to search objects by meaning, text or image, not just by key. So there is an optional semantic layer: a vector index that lets you query "the invoice from that vendor" or "photos that look like this one" instead of remembering exact names. It runs off the write path, built asynchronously after a write, and it is disposable, since it can always be rebuilt from the stored bytes. And because the index is keyed on content hash, repeated content only ever gets embedded once, same as everything else. No model runs on the server itself. Barme proxies to an embedder you point it at, so I am not shipping a pile of ML into a storage binary. This is the least finished corner of the project right now, more wired-up than proven, but the shape is there and it hangs off the same content-hash spine as the rest.
+
+## The parts that bit me
+
+Building it solo, two things cost me real time. Both are the kind of thing that does not show up in a design doc and only appears when the thing is actually running.
+
+### The filesystem quietly strangled the async runtime
+
+Barme runs on Tokio. The engine's methods, the ones that actually touch disk, are synchronous and blocking, and the request handlers call them directly. That is fine until it is not.
+
+The symptom was ugly and confusing. Connections would complete the TCP handshake and then just hang. Nothing after. Not a crash, not an error, just dead sockets. It happened worst at startup and on slower filesystems, which made it look flaky and random.
+
+The cause, once I found it, was almost obvious in hindsight. The garbage collector fired on its interval's very first tick, which is immediate, so the moment the server came up it swept the entire data directory on an async worker thread. At the same time, any burst of requests parked several more workers in blocking file I/O. Tokio has a fixed pool of worker threads. Block enough of them at once and there is nobody left to poll the accept loop, so new connections get accepted by the OS and then never looked at by the runtime. The server is alive and completely stuck.
+
+The fix was three small changes. Skip that immediate GC tick so startup is not a self-inflicted stampede. Push the sweep onto the blocking pool with `spawn_blocking` so it never sits on an async worker. And give the runtime a generous 16 worker threads for headroom, because request handlers genuinely do block on the engine and you have to budget threads for that. The comment I left in the code is blunt about why the number is what it is, so future me does not "optimize" it back down and reintroduce the hang.
+
+The lesson I keep relearning: async does not make blocking work free, it just hides where the blocking is until it bites you.
+
+### Ports are never as free as you think
+
+Smaller thing, bigger annoyance than it deserves to be. Barme binds four ports: native API, S3, CDN, and the console. On my own machine a stray old instance or, on Windows, a leftover WSL port relay would hold one of those ports, and startup would just die with an address-in-use error. Every single time, I would have to go hunt the process.
+
+So now each door binds up front and rolls forward to the next free port if the one it wanted is taken, up to a bound. It logs that it moved, and the startup banner and the CDN base URL show the ports it actually bound, not the ones it hoped for. It is maybe forty lines of code. It removed a daily papercut, and it makes `docker run` on a machine you do not control just come up instead of arguing with you.
+
+Neither of these is clever. That is sort of the point. The clever part, the content addressing, mostly worked the way the design said it would. The time went to the boring operational reality of a thing that has to actually stay running.
+
+## Where it is
+
+Alpha. Version 0.1.0. It works end to end: you can put and get over S3, version and diff and sync over the native API, and it dedups and compresses and garbage-collects for real. But it is early and I am honest about that in the README. Large uploads buffer in memory today, there is no streaming multipart yet, key secrets sit in the clear the way AWS does it, and it ships with a default `barme:barme` login you should change immediately. Do not put anything you cannot afford to lose in it yet.
+
+If you want to poke at it:
+
+    docker run -p 7373:7373 -p 7374:7374 -p 7375:7375 -p 9000:9000 \
+      -v barme:/data elroykanye/barme:0.1.0
+
+Console on `http://localhost:7374`, login `barme` / `barme`, and you are storing objects.
+
+I built it because nothing fit the shape I wanted, and I kept building it because content addressing turned out to be one of those ideas that keeps paying you back. The code is at [github.com/elroykanye/barme](https://github.com/elroykanye/barme). It is MIT. Have a look.
