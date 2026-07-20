@@ -52,17 +52,20 @@
 
 ### 📊 GitHub stats
 
+<!-- Cards are rendered and committed by .github/workflows/refresh-stat-cards.yml -->
+<!-- GitHub serves these local SVGs, so they never show a rate-limited/broken card. -->
+
 <p align="center">
-  <img height="200" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=elroykanye&theme=tokyonight" alt="Elroy's GitHub stats"/>
-  <img height="200" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=elroykanye&theme=tokyonight" alt="Most used languages"/>
+  <img height="200" src="./assets/github-stats/stats.svg" alt="Elroy's GitHub stats"/>
+  <img height="200" src="./assets/github-stats/languages.svg" alt="Most used languages"/>
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=elroykanye&theme=tokyonight&hide_border=true" alt="GitHub streak"/>
+  <img src="./assets/github-stats/streak.svg" alt="GitHub streak"/>
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=elroykanye&theme=tokyo-night&hide_border=true&area=true" alt="Contribution activity graph"/>
+  <img src="./assets/github-stats/activity.svg" alt="Contribution activity graph"/>
 </p>
 
 ---

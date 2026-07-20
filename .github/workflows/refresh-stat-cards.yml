@@ -1,0 +1,61 @@
+name: Refresh GitHub stat cards
+
+# Renders the profile stat cards at build time and commits the SVGs into the
+# repo, so GitHub serves our own files at view time (they can never render as a
+# broken/rate-limited card). If a source is rate-limited during a refresh, the
+# previous good SVG is kept instead of being overwritten.
+
+on:
+  schedule:
+    - cron: "0 6 * * *"        # daily at 06:00 UTC
+  workflow_dispatch:            # allow manual runs
+  push:
+    branches: [master]
+    paths: [".github/workflows/refresh-stat-cards.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-stat-cards
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch stat cards (keep last-good on failure)
+        env:
+          USER: elroykanye
+        run: |
+          mkdir -p assets/github-stats
+          fetch() { # name url
+            tmp="$(mktemp)"
+            if curl -fsSL --max-time 30 "$2" -o "$tmp" \
+               && ! grep -qi 'rate limit\|error!!!\|unavailable\|deployment_paused\|temporarily' "$tmp" \
+               && grep -qi '<svg' "$tmp"; then
+              mv "$tmp" "assets/github-stats/$1.svg"
+              echo "updated $1.svg"
+            else
+              echo "kept previous $1.svg (source unavailable)"
+              rm -f "$tmp"
+            fi
+          }
+          fetch stats     "https://github-profile-summary-cards.vercel.app/api/cards/stats?username=${USER}&theme=tokyonight"
+          fetch languages "https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=${USER}&theme=tokyonight"
+          fetch streak    "https://github-readme-streak-stats.herokuapp.com/?user=${USER}&theme=tokyonight&hide_border=true"
+          fetch activity  "https://github-readme-activity-graph.vercel.app/graph?username=${USER}&theme=tokyo-night&hide_border=true&area=true"
+
+      - name: Commit refreshed cards
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/github-stats/*.svg
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: refresh GitHub stat cards"
+            git push
+          fi
