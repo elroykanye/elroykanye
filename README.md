@@ -53,12 +53,16 @@
 ### 📊 GitHub stats
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=elroykanye&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" alt="Elroy's GitHub stats"/>
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=elroykanye&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Top languages"/>
+  <img height="200" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=elroykanye&theme=tokyonight" alt="Elroy's GitHub stats"/>
+  <img height="200" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=elroykanye&theme=tokyonight" alt="Most used languages"/>
 </p>
 
 <p align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=elroykanye&theme=tokyonight&hide_border=true" alt="GitHub streak"/>
+</p>
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=elroykanye&theme=tokyo-night&hide_border=true&area=true" alt="Contribution activity graph"/>
 </p>
 
 ---
