@@ -14,9 +14,12 @@ export default function ReactionTest() {
   const startAt = useRef(0);
 
   useEffect(() => {
-    const b = localStorage.getItem(HISCORE_KEY);
-    setBest(b ? Number(b) : null);
+    const loadId = window.setTimeout(() => {
+      const b = localStorage.getItem(HISCORE_KEY);
+      setBest(b ? Number(b) : null);
+    }, 0);
     return () => {
+      window.clearTimeout(loadId);
       if (timeout.current) clearTimeout(timeout.current);
     };
   }, []);
@@ -71,12 +74,12 @@ export default function ReactionTest() {
 
   return (
     <div>
-      <p className="text-center text-xs text-muted">
+      <p className="text-center text-xs text-paper/75">
         Wait for green, then tap to <span className="font-mono">ship</span>. Tap
         on red and you shipped a bug.
       </p>
 
-      <div className="mt-3 flex items-center justify-center font-mono text-xs text-muted">
+      <div className="mt-3 flex items-center justify-center font-mono text-xs text-paper/75">
         best {best !== null ? `${best} ms` : "—"}
       </div>
 
@@ -86,13 +89,13 @@ export default function ReactionTest() {
         className={`mt-3 flex min-h-[12rem] w-full flex-col items-center justify-center rounded-2xl border p-6 text-center transition-colors ${palette[phase]}`}
       >
         {phase === "idle" && (
-          <span className="text-sm text-muted">Tap to arm. Then wait…</span>
+          <span className="text-sm text-paper/75">Tap to arm. Then wait…</span>
         )}
         {phase === "waiting" && (
           <span className="text-lg font-semibold">Wait for green…</span>
         )}
         {phase === "go" && (
-          <span className="inline-flex items-center gap-2 text-2xl font-bold gradient-text">
+          <span className="inline-flex items-center gap-2 text-2xl font-bold text-signal">
             <Rocket className="h-6 w-6" strokeWidth={2} /> SHIP IT!
           </span>
         )}
@@ -101,16 +104,16 @@ export default function ReactionTest() {
             <span className="inline-flex items-center gap-2 text-lg font-semibold">
               <Bug className="h-5 w-5 text-rose-400" strokeWidth={2} /> Too soon!
             </span>
-            <span className="mt-1 text-xs text-muted">
+            <span className="mt-1 text-xs text-paper/75">
               You shipped on red. Tap to retry.
             </span>
           </>
         )}
         {phase === "done" && (
           <>
-            <span className="text-3xl font-bold gradient-text">{ms} ms</span>
-            <span className="mt-1 text-xs text-muted">{verdict}</span>
-            <span className="mt-2 text-xs text-muted">Tap to go again.</span>
+            <span className="text-3xl font-bold text-signal">{ms} ms</span>
+            <span className="mt-1 text-xs text-paper/75">{verdict}</span>
+            <span className="mt-2 text-xs text-paper/75">Tap to go again.</span>
           </>
         )}
       </button>

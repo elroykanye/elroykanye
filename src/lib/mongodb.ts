@@ -11,7 +11,6 @@ let clientPromise: Promise<MongoClient> | null = null;
 
 declare global {
   // Reuse the connection across hot reloads in dev to avoid exhausting it.
-  // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 

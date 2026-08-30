@@ -3,31 +3,22 @@
 import { useEffect, useState } from "react";
 import { currently } from "@/lib/site";
 
-// A little "currently" status line that cycles every few seconds.
 export default function CurrentlyTicker() {
-  const [i, setI] = useState(0);
-  const [show, setShow] = useState(true);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setShow(false);
-      setTimeout(() => {
-        setI((prev) => (prev + 1) % currently.length);
-        setShow(true);
-      }, 300);
-    }, 3200);
-    return () => clearInterval(id);
+    const id = window.setInterval(
+      () => setIndex((value) => (value + 1) % currently.length),
+      4200,
+    );
+    return () => window.clearInterval(id);
   }, []);
 
   return (
-    <div className="glass inline-flex items-center gap-3 rounded-full px-4 py-2 text-sm">
-      <span className="font-mono text-xs text-muted">currently</span>
-      <span
-        className={`text-foreground/90 transition-opacity duration-300 ${
-          show ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {currently[i]}
+    <div className="grid gap-2 sm:grid-cols-[auto_1fr] sm:items-baseline">
+      <span className="field-label text-forest">Currently</span>
+      <span className="text-sm leading-relaxed text-muted" aria-live="polite">
+        {currently[index]}
       </span>
     </div>
   );

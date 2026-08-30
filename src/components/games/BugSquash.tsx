@@ -36,7 +36,11 @@ export default function BugSquash() {
   const idRef = useRef(0);
 
   useEffect(() => {
-    setHi(Number(localStorage.getItem(HISCORE_KEY) || 0));
+    const id = window.setTimeout(
+      () => setHi(Number(localStorage.getItem(HISCORE_KEY) || 0)),
+      0,
+    );
+    return () => window.clearTimeout(id);
   }, []);
 
   const start = useCallback(() => {
@@ -48,17 +52,20 @@ export default function BugSquash() {
 
   useEffect(() => {
     if (!running) return;
-    if (time <= 0) {
-      setRunning(false);
-      setCells(Array(GRID).fill(null));
-      setHi((h) => {
-        const next = Math.max(h, score);
-        localStorage.setItem(HISCORE_KEY, String(next));
-        return next;
-      });
-      return;
-    }
-    const t = setTimeout(() => setTime((v) => v - 1), 1000);
+    const t = window.setTimeout(() => {
+      if (time <= 1) {
+        setTime(0);
+        setRunning(false);
+        setCells(Array(GRID).fill(null));
+        setHi((h) => {
+          const next = Math.max(h, score);
+          localStorage.setItem(HISCORE_KEY, String(next));
+          return next;
+        });
+        return;
+      }
+      setTime((v) => v - 1);
+    }, 1000);
     return () => clearTimeout(t);
   }, [running, time, score]);
 
@@ -105,7 +112,7 @@ export default function BugSquash() {
 
   return (
     <div className={shake ? "animate-[wiggle_0.35s_ease]" : ""}>
-      <div className="flex items-center justify-center gap-4 text-xs text-muted">
+      <div className="flex items-center justify-center gap-4 text-xs text-paper/75">
         <span className="inline-flex items-center gap-1">
           <Bug className="h-3.5 w-3.5 text-emerald-400" strokeWidth={2} /> +1
         </span>
@@ -119,10 +126,10 @@ export default function BugSquash() {
 
       <div className="mt-3 flex items-center justify-between font-mono text-xs">
         <span>
-          score <span className="gradient-text font-bold">{score}</span>
+          score <span className="font-bold text-signal">{score}</span>
         </span>
-        <span className="text-muted">best {hi}</span>
-        <span className={time <= 5 && running ? "text-accent-3" : "text-muted"}>
+        <span className="text-paper/75">best {hi}</span>
+        <span className={time <= 5 && running ? "text-signal" : "text-paper/75"}>
           {time}s
         </span>
       </div>
@@ -150,15 +157,15 @@ export default function BugSquash() {
         })}
 
         {(idle || over) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-background/70 p-4 text-center backdrop-blur-sm">
+          <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-ink/90 p-4 text-center">
             {over && (
               <>
                 <p className="font-semibold">Time! Scored {score}.</p>
-                <p className="mt-1 text-xs text-muted">{verdict(score)}</p>
+                <p className="mt-1 text-xs text-paper/75">{verdict(score)}</p>
               </>
             )}
             {idle && (
-              <p className="text-xs text-muted">
+              <p className="text-xs text-paper/75">
                 The bugs won&apos;t squash themselves.
               </p>
             )}

@@ -1,32 +1,34 @@
-import { siteConfig, experience } from "@/lib/site";
+import { experience, siteConfig } from "@/lib/site";
 import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
 
-const stats = [
-  { value: siteConfig.yearsExperience, label: "Years experience" },
-  { value: `${experience.length}`, label: "Companies shipped for" },
-  { value: "∞", label: "Curiosity" },
+const facts = [
+  { value: siteConfig.yearsExperience, label: "Years building" },
+  { value: String(experience.length), label: "Teams shipped with" },
+  { value: "3", label: "Stacks: JVM · .NET · web" },
 ];
 
 export default function About() {
   return (
-    <section className="scroll-mt-24 py-12">
+    <section className="py-16 sm:py-24">
+      <SectionHeading index="04" title="Operating principles" />
       <Reveal>
-        <div className="glass rounded-3xl p-8 sm:p-10">
-          <p className="text-base leading-relaxed text-foreground/90 sm:text-lg">
-            {siteConfig.summary}
+        <div className="mt-8 grid gap-10 lg:grid-cols-[0.8fr_1.7fr]">
+          <p className="max-w-sm font-display text-3xl leading-tight text-clay sm:text-4xl">
+            Good systems are understandable. Good teams make that understanding travel.
           </p>
-
-          <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-8">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <div className="text-3xl font-bold gradient-text sm:text-4xl">
-                  {stat.value}
+          <div>
+            <p className="max-w-3xl text-base leading-8 text-foreground/85 sm:text-lg">
+              {siteConfig.summary}
+            </p>
+            <dl className="mt-8 grid border-y border-ink/25 sm:grid-cols-3">
+              {facts.map((fact, index) => (
+                <div key={fact.label} className={`py-5 sm:px-5 ${index ? "border-t border-ink/20 sm:border-l sm:border-t-0" : ""}`}>
+                  <dt className="field-label text-muted">{fact.label}</dt>
+                  <dd className="mt-2 font-display text-4xl text-forest">{fact.value}</dd>
                 </div>
-                <div className="mt-1 text-xs text-muted sm:text-sm">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </dl>
           </div>
         </div>
       </Reveal>

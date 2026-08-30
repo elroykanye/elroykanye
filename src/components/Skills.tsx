@@ -4,23 +4,23 @@ import SectionHeading from "@/components/SectionHeading";
 
 export default function Skills() {
   return (
-    <section id="skills" className="scroll-mt-24 py-12">
-      <SectionHeading index="02" title="Skills & tooling" />
+    <section id="skills" className="scroll-mt-24 py-16 sm:py-24">
+      <SectionHeading index="06" title="Skills & tooling" />
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 divide-y divide-ink/25 border-y border-ink/25">
         {skills.map((group, i) => (
           <Reveal key={group.category} delay={i * 60}>
-            <div className="glass glass-hover h-full rounded-2xl p-6">
-              <h3 className="font-mono text-sm text-accent-2">
+            <div className="grid gap-4 py-6 sm:grid-cols-[12rem_1fr] sm:items-start">
+              <h3 className="field-label text-clay">
                 {group.category}
               </h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-x-5 gap-y-2">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-lg border border-border bg-white/5 px-3 py-1.5 text-sm text-foreground/90"
+                    className="font-mono text-xs uppercase tracking-wide text-foreground/85"
                   >
-                    {item}
+                    <span className="mr-2 text-forest">/</span>{item}
                   </li>
                 ))}
               </ul>

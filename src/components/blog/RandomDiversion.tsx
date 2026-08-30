@@ -14,30 +14,34 @@ export default function RandomDiversion() {
 
   useEffect(() => {
     if (placed.current) return; // guard against StrictMode double-invoke
-    const content = document.querySelector("[data-post-content]");
-    if (!content) return;
+    let holder: HTMLDivElement | null = null;
+    const id = window.setTimeout(() => {
+      const content = document.querySelector("[data-post-content]");
+      if (!content) return;
 
-    const paragraphs = Array.from(
-      content.querySelectorAll(":scope > p"),
-    ) as HTMLElement[];
-    if (paragraphs.length < 3) return; // too short to bother
+      const paragraphs = Array.from(
+        content.querySelectorAll(":scope > p"),
+      ) as HTMLElement[];
+      if (paragraphs.length < 3) return; // too short to bother
 
-    // Insert somewhere in the body, never right at the very start or end.
-    const min = 1;
-    const max = paragraphs.length - 1;
-    const idx = min + Math.floor(Math.random() * (max - min));
+      // Insert somewhere in the body, never right at the very start or end.
+      const min = 1;
+      const max = paragraphs.length - 1;
+      const idx = min + Math.floor(Math.random() * (max - min));
 
-    const holder = document.createElement("div");
-    holder.className = "not-prose my-8";
-    paragraphs[idx].after(holder);
-    placed.current = true;
+      holder = document.createElement("div");
+      holder.className = "not-prose my-8";
+      paragraphs[idx].after(holder);
+      placed.current = true;
 
-    const Comp = DIVERSIONS[Math.floor(Math.random() * DIVERSIONS.length)];
-    setPicked(() => Comp);
-    setMount(holder);
+      const Comp = DIVERSIONS[Math.floor(Math.random() * DIVERSIONS.length)];
+      setPicked(() => Comp);
+      setMount(holder);
+    }, 0);
 
     return () => {
-      holder.remove();
+      window.clearTimeout(id);
+      holder?.remove();
       placed.current = false;
     };
   }, []);

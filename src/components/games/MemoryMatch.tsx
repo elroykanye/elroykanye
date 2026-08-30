@@ -52,21 +52,14 @@ export default function MemoryMatch() {
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    const b = localStorage.getItem(HISCORE_KEY);
-    setBest(b ? Number(b) : null);
+    const id = window.setTimeout(() => {
+      const b = localStorage.getItem(HISCORE_KEY);
+      setBest(b ? Number(b) : null);
+    }, 0);
+    return () => window.clearTimeout(id);
   }, []);
 
   const won = matched.length === PAIRS;
-
-  useEffect(() => {
-    if (won) {
-      setBest((prev) => {
-        const next = prev === null ? moves : Math.min(prev, moves);
-        localStorage.setItem(HISCORE_KEY, String(next));
-        return next;
-      });
-    }
-  }, [won, moves]);
 
   const reset = () => {
     setDeck(makeDeck());
@@ -87,7 +80,19 @@ export default function MemoryMatch() {
       setMoves((m) => m + 1);
       const [a, b] = next;
       if (deck[a].key === deck[b].key) {
-        setMatched((prev) => [...prev, deck[a].key]);
+        setMatched((prev) => {
+          const nextMatched = [...prev, deck[a].key];
+          if (nextMatched.length === PAIRS) {
+            const finalMoves = moves + 1;
+            setBest((current) => {
+              const nextBest =
+                current === null ? finalMoves : Math.min(current, finalMoves);
+              localStorage.setItem(HISCORE_KEY, String(nextBest));
+              return nextBest;
+            });
+          }
+          return nextMatched;
+        });
         setFlipped([]);
       } else {
         setTimeout(() => setFlipped([]), 700);
@@ -106,16 +111,16 @@ export default function MemoryMatch() {
 
   return (
     <div>
-      <p className="text-center text-xs text-muted">
+      <p className="text-center text-xs text-paper/75">
         Flip cards, match the pairs in as few moves as possible.
       </p>
 
       <div className="mt-3 flex items-center justify-between font-mono text-xs">
         <span>
-          moves <span className="gradient-text font-bold">{moves}</span>
+          moves <span className="font-bold text-signal">{moves}</span>
         </span>
-        <span className="text-muted">best {best ?? "—"}</span>
-        <span className="text-muted">
+        <span className="text-paper/75">best {best ?? "—"}</span>
+        <span className="text-paper/75">
           {matched.length}/{PAIRS}
         </span>
       </div>
@@ -148,15 +153,15 @@ export default function MemoryMatch() {
         })}
 
         {(!started || won) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-background/70 p-4 text-center backdrop-blur-sm">
+          <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-ink/90 p-4 text-center">
             {won && (
               <>
                 <p className="font-semibold">Solved in {moves} moves!</p>
-                <p className="mt-1 text-xs text-muted">{verdict}</p>
+                <p className="mt-1 text-xs text-paper/75">{verdict}</p>
               </>
             )}
             {!started && (
-              <p className="text-xs text-muted">
+              <p className="text-xs text-paper/75">
                 Match all {PAIRS} pairs of the stack.
               </p>
             )}

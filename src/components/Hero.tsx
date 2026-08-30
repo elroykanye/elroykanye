@@ -1,78 +1,87 @@
+import { ArrowDownRight, Download, MapPin } from "lucide-react";
 import { siteConfig, socials } from "@/lib/site";
 import Reveal from "@/components/Reveal";
 import CurrentlyTicker from "@/components/CurrentlyTicker";
 
 export default function Hero() {
   return (
-    <section
-      id="about"
-      className="scroll-mt-24 py-20 sm:py-28"
-    >
-      <Reveal>
-        <div className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs text-muted">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-2 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-2" />
-          </span>
-          Available for select opportunities
+    <section id="about" className="scroll-mt-24 border-b border-ink/25 pb-16 pt-20 sm:pb-24 sm:pt-28">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.65fr)_minmax(18rem,0.75fr)] lg:items-end">
+        <div>
+          <Reveal>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em]">
+              <span className="inline-flex items-center gap-2 text-forest">
+                <span className="h-2 w-2 bg-signal ring-1 ring-ink" aria-hidden />
+                Available for select opportunities
+              </span>
+              <span className="inline-flex items-center gap-2 text-muted">
+                <MapPin className="h-3.5 w-3.5" aria-hidden /> Bamenda, Cameroon
+              </span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <h1 className="mt-8 max-w-5xl font-display text-[clamp(4.5rem,12vw,10rem)] leading-[0.76] tracking-[-0.055em]">
+              Elroy Kimbi
+            </h1>
+          </Reveal>
+
+          <Reveal delay={140}>
+            <p className="mt-10 max-w-4xl font-display text-[clamp(2rem,4.6vw,4.8rem)] leading-[0.94] text-clay">
+              I build reliable systems and the teams behind them.
+            </p>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <a
+                href="#work"
+                className="inline-flex min-h-12 items-center gap-3 border border-ink bg-ink px-5 py-3 text-sm font-semibold text-paper transition-colors hover:bg-clay focus-visible:outline-signal"
+              >
+                View selected systems <ArrowDownRight className="h-4 w-4" aria-hidden />
+              </a>
+              <a
+                href={siteConfig.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-12 items-center gap-3 border border-ink px-5 py-3 text-sm font-semibold transition-colors hover:bg-paper-bright"
+              >
+                Résumé <Download className="h-4 w-4" aria-hidden />
+              </a>
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
 
-      <Reveal delay={80}>
-        <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight sm:text-7xl">
-          {siteConfig.name.split(" ")[0]}
-          <br />
-          <span className="gradient-text">
-            {siteConfig.name.split(" ").slice(1).join(" ")}
-          </span>
-        </h1>
-      </Reveal>
+        <Reveal delay={160}>
+          <aside className="border border-ink/35 bg-paper-bright/70 p-5 sm:p-6" aria-label="Professional dossier">
+            {[
+              ["Role", siteConfig.role],
+              ["Focus", "System design · software engineering · team enablement"],
+              ["Approach", "Clarity over complexity · evidence over claims"],
+            ].map(([label, value], index) => (
+              <div key={label} className={`py-4 ${index ? "border-t border-ink/20" : "pt-0"}`}>
+                <p className="field-label text-clay">{label} / 0{index + 1}</p>
+                <p className="mt-2 text-sm font-semibold leading-relaxed">{value}</p>
+              </div>
+            ))}
+            <div className="border-t border-ink/20 pt-5">
+              <CurrentlyTicker />
+            </div>
+          </aside>
+        </Reveal>
+      </div>
 
-      <Reveal delay={160}>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-          {siteConfig.role}. {siteConfig.tagline}
-        </p>
-        <p className="mt-3 max-w-2xl font-mono text-sm text-accent-2">
-          {siteConfig.quip}
-        </p>
-      </Reveal>
-
-      <Reveal delay={200}>
-        <div className="mt-6">
-          <CurrentlyTicker />
-        </div>
-      </Reveal>
-
-      <Reveal delay={240}>
-        <div className="mt-9 flex flex-wrap items-center gap-3">
-          <a
-            href="#contact"
-            className="rounded-xl bg-accent px-6 py-3 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:shadow-accent/50"
-          >
-            Get in touch
-          </a>
-          <a
-            href={siteConfig.resumeUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="glass glass-hover rounded-xl px-6 py-3 text-sm font-medium text-foreground"
-          >
-            Download résumé
-          </a>
-        </div>
-      </Reveal>
-
-      <Reveal delay={320}>
-        <ul className="mt-8 flex flex-wrap items-center gap-5 text-sm">
+      <Reveal delay={260}>
+        <ul className="mt-14 flex flex-wrap gap-x-7 gap-y-3 border-t border-ink/20 pt-5 font-mono text-[11px] uppercase tracking-wider">
           {socials.map((social) => (
             <li key={social.label}>
               <a
                 href={social.href}
                 target={social.href.startsWith("http") ? "_blank" : undefined}
                 rel={social.href.startsWith("http") ? "noreferrer" : undefined}
-                className="text-muted transition-colors hover:text-foreground"
+                className="transition-colors hover:text-clay"
               >
-                {social.label}
+                {social.label} ↗
               </a>
             </li>
           ))}

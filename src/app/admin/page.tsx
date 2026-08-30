@@ -52,10 +52,12 @@ export default function AdminPage() {
 
   useEffect(() => {
     const saved = sessionStorage.getItem(TOKEN_KEY);
-    if (saved) {
+    if (!saved) return;
+    const id = window.setTimeout(() => {
       setToken(saved);
-      load(saved).catch(() => {});
-    }
+      void load(saved).catch(() => {});
+    }, 0);
+    return () => window.clearTimeout(id);
   }, [load]);
 
   async function signIn() {

@@ -3,30 +3,29 @@ import Reveal from "@/components/Reveal";
 
 export default function Contact() {
   return (
-    <section id="contact" className="scroll-mt-24 py-16">
+    <section id="contact" className="scroll-mt-24 py-16 sm:py-24">
       <Reveal>
-        <div className="glass relative overflow-hidden rounded-3xl p-10 text-center sm:p-14">
-          <div
-            className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/30 blur-3xl"
-            aria-hidden
-          />
-          <p className="font-mono text-sm text-accent-2">Let&apos;s build something</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-            Get in <span className="gradient-text">touch</span>
+        <div className="grid gap-10 border border-ink bg-ink p-7 text-paper sm:p-12 lg:grid-cols-[1.3fr_1fr] lg:items-end">
+          <div>
+          <p className="field-label text-signal">Field / 10 · Open channel</p>
+          <h2 className="mt-4 max-w-2xl font-display text-5xl leading-[0.95] sm:text-7xl">
+            Let&apos;s build something that holds up.
           </h2>
-          <p className="mx-auto mt-4 max-w-md leading-relaxed text-muted">
+          </div>
+          <div>
+          <p className="max-w-md leading-7 text-paper/75">
             I&apos;m open to interesting roles, collaborations, and
             conversations. The fastest way to reach me is by email.
           </p>
 
           <a
             href={`mailto:${siteConfig.email}`}
-            className="mt-8 inline-block rounded-xl bg-accent px-7 py-3.5 text-sm font-medium text-accent-ink shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:shadow-accent/50"
+            className="mt-7 inline-flex min-h-11 items-center border border-paper bg-paper px-5 font-mono text-xs uppercase tracking-wide text-ink transition-colors hover:bg-signal focus-visible:outline-paper"
           >
             {siteConfig.email}
           </a>
 
-          <ul className="mt-8 flex items-center justify-center gap-6 text-sm">
+          <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-wide">
             {socials
               .filter((s) => s.label !== "Email")
               .map((social) => (
@@ -35,13 +34,14 @@ export default function Contact() {
                     href={social.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-muted transition-colors hover:text-foreground"
+                    className="text-paper/65 transition-colors hover:text-paper"
                   >
                     {social.label}
                   </a>
                 </li>
               ))}
           </ul>
+          </div>
         </div>
       </Reveal>
     </section>
