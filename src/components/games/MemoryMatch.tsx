@@ -52,21 +52,14 @@ export default function MemoryMatch() {
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    const b = localStorage.getItem(HISCORE_KEY);
-    setBest(b ? Number(b) : null);
+    const id = window.setTimeout(() => {
+      const b = localStorage.getItem(HISCORE_KEY);
+      setBest(b ? Number(b) : null);
+    }, 0);
+    return () => window.clearTimeout(id);
   }, []);
 
   const won = matched.length === PAIRS;
-
-  useEffect(() => {
-    if (won) {
-      setBest((prev) => {
-        const next = prev === null ? moves : Math.min(prev, moves);
-        localStorage.setItem(HISCORE_KEY, String(next));
-        return next;
-      });
-    }
-  }, [won, moves]);
 
   const reset = () => {
     setDeck(makeDeck());
@@ -87,7 +80,19 @@ export default function MemoryMatch() {
       setMoves((m) => m + 1);
       const [a, b] = next;
       if (deck[a].key === deck[b].key) {
-        setMatched((prev) => [...prev, deck[a].key]);
+        setMatched((prev) => {
+          const nextMatched = [...prev, deck[a].key];
+          if (nextMatched.length === PAIRS) {
+            const finalMoves = moves + 1;
+            setBest((current) => {
+              const nextBest =
+                current === null ? finalMoves : Math.min(current, finalMoves);
+              localStorage.setItem(HISCORE_KEY, String(nextBest));
+              return nextBest;
+            });
+          }
+          return nextMatched;
+        });
         setFlipped([]);
       } else {
         setTimeout(() => setFlipped([]), 700);

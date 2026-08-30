@@ -20,15 +20,15 @@ export default function Games() {
   const [active, setActive] = useState<TabId>("bugs");
 
   return (
-    <section id="play" className="scroll-mt-24 py-12">
-      <SectionHeading index="04" title="The Arcade" />
-      <p className="mt-3 text-sm text-muted">
+    <section id="play" className="scroll-mt-24 py-16 sm:py-24">
+      <SectionHeading index="07" title="The Arcade" />
+      <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
         Three tiny games, because a portfolio shouldn&apos;t be a chore to read.
         High scores save to your browser. Go on, flex.
       </p>
 
       <Reveal>
-        <div className="glass mt-6 rounded-3xl p-4 sm:p-6">
+        <div className="mt-8 border border-ink bg-ink p-4 text-paper sm:p-6">
           {/* Tab selector */}
           <div className="flex gap-2 overflow-x-auto pb-1">
             {TABS.map((tab) => (
@@ -36,10 +36,11 @@ export default function Games() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActive(tab.id)}
-                className={`flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors ${
+                aria-pressed={active === tab.id}
+                className={`flex min-h-11 shrink-0 items-center gap-1.5 border px-4 py-2 font-mono text-xs uppercase tracking-wide transition-colors ${
                   active === tab.id
-                    ? "bg-accent text-accent-ink shadow-lg shadow-accent/30"
-                    : "border border-border bg-white/5 text-muted hover:text-foreground"
+                    ? "border-signal bg-signal text-ink"
+                    : "border-paper/25 bg-transparent text-paper/65 hover:border-paper/60 hover:text-paper"
                 }`}
               >
                 <tab.Icon className="h-4 w-4" strokeWidth={2} />
@@ -49,7 +50,7 @@ export default function Games() {
           </div>
 
           {/* Active game — only the mounted one runs its timers */}
-          <div className="mt-5 rounded-2xl border border-border bg-black/20 p-4 sm:p-6">
+          <div className="mt-5 border border-paper/25 bg-paper/[0.04] p-4 sm:p-6">
             {active === "bugs" && <BugSquash />}
             {active === "memory" && <MemoryMatch />}
             {active === "reaction" && <ReactionTest />}

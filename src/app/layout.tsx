@@ -1,22 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
-import Aurora from "@/components/Aurora";
-import AccentDrift from "@/components/AccentDrift";
 import {
   personSchema,
   websiteSchema,
   jsonLdProps,
 } from "@/lib/structured-data";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sans = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const mono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
+const display = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
 });
 
@@ -76,8 +80,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05060a",
-  colorScheme: "dark",
+  themeColor: "#f2ebdd",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -88,11 +92,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${sans.variable} ${mono.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <AccentDrift />
-        <Aurora />
         <script {...jsonLdProps(personSchema())} />
         <script {...jsonLdProps(websiteSchema())} />
         {children}

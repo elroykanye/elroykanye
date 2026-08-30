@@ -20,12 +20,16 @@ function beats(a: MoveKey, b: MoveKey): boolean {
   );
 }
 
+function randomMove(): MoveKey {
+  return MOVES[Math.floor(Math.random() * MOVES.length)].key;
+}
+
 export default function RockPaperScissors() {
   const [result, setResult] = useState<string | null>(null);
   const [score, setScore] = useState({ you: 0, cpu: 0 });
 
   function play(you: MoveKey) {
-    const cpu = MOVES[Math.floor(Math.random() * 3)].key;
+    const cpu = randomMove();
     if (you === cpu) {
       setResult(`Both picked ${you}. Draw.`);
     } else if (beats(you, cpu)) {

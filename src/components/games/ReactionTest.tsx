@@ -14,9 +14,12 @@ export default function ReactionTest() {
   const startAt = useRef(0);
 
   useEffect(() => {
-    const b = localStorage.getItem(HISCORE_KEY);
-    setBest(b ? Number(b) : null);
+    const loadId = window.setTimeout(() => {
+      const b = localStorage.getItem(HISCORE_KEY);
+      setBest(b ? Number(b) : null);
+    }, 0);
     return () => {
+      window.clearTimeout(loadId);
       if (timeout.current) clearTimeout(timeout.current);
     };
   }, []);

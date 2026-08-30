@@ -1,20 +1,13 @@
 import Reveal from "@/components/Reveal";
 
-export default function SectionHeading({
-  index,
-  title,
-}: {
-  index: string;
-  title: string;
-}) {
+export default function SectionHeading({ index, title }: { index: string; title: string }) {
   return (
     <Reveal>
-      <div className="flex items-baseline gap-3">
-        <span className="font-mono text-sm text-accent">{index}</span>
-        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+      <div className="flex items-end gap-4 border-b border-ink/25 pb-4">
+        <span className="field-label text-clay">Field / {index}</span>
+        <h2 className="font-display text-4xl leading-none tracking-tight sm:text-5xl">
           {title}
         </h2>
-        <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
       </div>
     </Reveal>
   );

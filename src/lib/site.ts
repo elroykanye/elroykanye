@@ -7,7 +7,7 @@ export const siteConfig = {
   fullName: "Elroy Ankelmbom Kimbi Yonghabichia",
   role: "Technical Lead & Full Stack Engineer",
   tagline:
-    "Technical Lead and Full Stack Engineer building scalable enterprise applications, microservices, and CI/CD platforms.",
+    "I build reliable systems and the teams behind them.",
   // A more human, quirky one-liner used in the hero.
   quip: "I turn caffeine into microservices and bugs into features™.",
   summary:
@@ -43,6 +43,60 @@ export const sameAs: string[] = [
   "https://www.linkedin.com/in/elroykanye",
   "https://twitter.com/elroykanye",
   "https://elroykanye.hashnode.dev",
+];
+
+export type SelectedWorkItem = {
+  number: string;
+  title: string;
+  kind: string;
+  summary: string;
+  proof: string;
+  stack: string[];
+  href: string;
+  linkLabel: string;
+  external?: boolean;
+};
+
+// Evidence-led case studies. Every claim below is grounded in the linked write-up
+// or in the experience record on this page; no vanity metrics are invented.
+export const selectedWork: SelectedWorkItem[] = [
+  {
+    number: "01",
+    title: "Barme",
+    kind: "Content-addressed object store",
+    summary:
+      "A lightweight object store built around one decision: address bytes by their content, not their name.",
+    proof:
+      "S3 and native JSON APIs share one engine. Chunk hashes make deduplication, cheap versioning, integrity checks, and instance sync consequences of the storage model.",
+    stack: ["Rust", "S3 / SigV4", "Content addressing", "Sync"],
+    href: "https://github.com/elroykanye/barme",
+    linkLabel: "View repository",
+    external: true,
+  },
+  {
+    number: "02",
+    title: "Maayo",
+    kind: "Offline-first sync library",
+    summary:
+      "A small sync layer built for apps that cannot pretend the network will always be there.",
+    proof:
+      "Writes land locally in an IndexedDB outbox and appear immediately. Independent push and pull flows drain mutations and fetch cursor-based changes when connectivity returns.",
+    stack: ["TypeScript", "React", "IndexedDB", "Sync protocol"],
+    href: "/blog/maayo-offline-first-sync-library",
+    linkLabel: "Read the design story",
+  },
+  {
+    number: "03",
+    title: "OpenRefine",
+    kind: "Open-source localization",
+    summary:
+      "An Outreachy contribution focused on making a mature data-cleaning tool work for more people and languages.",
+    proof:
+      "Implemented server-side localization, reviewed contributions, and worked with the community to triage critical issues while protecting an established codebase.",
+    stack: ["Java", "JavaScript", "Servlets", "Weblate"],
+    href: "#experience",
+    linkLabel: "Trace it in experience",
+  },
 ];
 
 export type SkillGroup = { category: string; items: string[] };

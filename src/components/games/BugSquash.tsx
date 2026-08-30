@@ -36,7 +36,11 @@ export default function BugSquash() {
   const idRef = useRef(0);
 
   useEffect(() => {
-    setHi(Number(localStorage.getItem(HISCORE_KEY) || 0));
+    const id = window.setTimeout(
+      () => setHi(Number(localStorage.getItem(HISCORE_KEY) || 0)),
+      0,
+    );
+    return () => window.clearTimeout(id);
   }, []);
 
   const start = useCallback(() => {
@@ -48,17 +52,20 @@ export default function BugSquash() {
 
   useEffect(() => {
     if (!running) return;
-    if (time <= 0) {
-      setRunning(false);
-      setCells(Array(GRID).fill(null));
-      setHi((h) => {
-        const next = Math.max(h, score);
-        localStorage.setItem(HISCORE_KEY, String(next));
-        return next;
-      });
-      return;
-    }
-    const t = setTimeout(() => setTime((v) => v - 1), 1000);
+    const t = window.setTimeout(() => {
+      if (time <= 1) {
+        setTime(0);
+        setRunning(false);
+        setCells(Array(GRID).fill(null));
+        setHi((h) => {
+          const next = Math.max(h, score);
+          localStorage.setItem(HISCORE_KEY, String(next));
+          return next;
+        });
+        return;
+      }
+      setTime((v) => v - 1);
+    }, 1000);
     return () => clearTimeout(t);
   }, [running, time, score]);
 

@@ -2,8 +2,8 @@ import { siteConfig } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="mt-8 px-4 pb-6">
-      <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-2 rounded-2xl border-t border-border py-8 text-center text-sm text-muted sm:flex-row sm:text-left">
+    <footer className="px-5 pb-8 sm:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 border-t border-ink/25 py-7 font-mono text-xs uppercase tracking-wide text-muted sm:flex-row">
         <p>
           © {new Date().getFullYear()} {siteConfig.fullName}
         </p>
