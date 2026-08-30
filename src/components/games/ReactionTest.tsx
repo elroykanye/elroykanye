@@ -95,7 +95,7 @@ export default function ReactionTest() {
           <span className="text-lg font-semibold">Wait for green…</span>
         )}
         {phase === "go" && (
-          <span className="inline-flex items-center gap-2 text-2xl font-bold gradient-text">
+          <span className="inline-flex items-center gap-2 text-2xl font-bold text-signal">
             <Rocket className="h-6 w-6" strokeWidth={2} /> SHIP IT!
           </span>
         )}
@@ -111,7 +111,7 @@ export default function ReactionTest() {
         )}
         {phase === "done" && (
           <>
-            <span className="text-3xl font-bold gradient-text">{ms} ms</span>
+            <span className="text-3xl font-bold text-signal">{ms} ms</span>
             <span className="mt-1 text-xs text-paper/75">{verdict}</span>
             <span className="mt-2 text-xs text-paper/75">Tap to go again.</span>
           </>

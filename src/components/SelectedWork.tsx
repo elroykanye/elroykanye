@@ -38,7 +38,7 @@ export default function SelectedWork() {
                 </p>
               </div>
               <div className="border-b border-paper/20 p-5 lg:border-r lg:border-b-0 lg:p-6">
-                <p className="field-label text-paper/45">Design proof</p>
+                <p className="field-label text-paper/70">Design proof</p>
                 <p className="mt-3 text-sm leading-relaxed text-paper/82">
                   {item.proof}
                 </p>

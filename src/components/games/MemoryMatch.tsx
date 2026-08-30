@@ -117,7 +117,7 @@ export default function MemoryMatch() {
 
       <div className="mt-3 flex items-center justify-between font-mono text-xs">
         <span>
-          moves <span className="gradient-text font-bold">{moves}</span>
+          moves <span className="font-bold text-signal">{moves}</span>
         </span>
         <span className="text-paper/75">best {best ?? "—"}</span>
         <span className="text-paper/75">

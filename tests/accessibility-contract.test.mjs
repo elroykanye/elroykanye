@@ -73,6 +73,8 @@ test("surface-specific accents do not reuse low-contrast combinations", async ()
   assert.match(contact, /bg-ink/);
   for (const game of [bug, memory, reaction]) {
     assert.doesNotMatch(game, /text-muted/);
+    assert.doesNotMatch(game, /gradient-text/);
+    assert.match(game, /text-signal/);
   }
 });
 

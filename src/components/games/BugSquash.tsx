@@ -126,7 +126,7 @@ export default function BugSquash() {
 
       <div className="mt-3 flex items-center justify-between font-mono text-xs">
         <span>
-          score <span className="gradient-text font-bold">{score}</span>
+          score <span className="font-bold text-signal">{score}</span>
         </span>
         <span className="text-paper/75">best {hi}</span>
         <span className={time <= 5 && running ? "text-signal" : "text-paper/75"}>
