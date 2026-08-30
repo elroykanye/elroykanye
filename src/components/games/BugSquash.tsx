@@ -112,7 +112,7 @@ export default function BugSquash() {
 
   return (
     <div className={shake ? "animate-[wiggle_0.35s_ease]" : ""}>
-      <div className="flex items-center justify-center gap-4 text-xs text-muted">
+      <div className="flex items-center justify-center gap-4 text-xs text-paper/75">
         <span className="inline-flex items-center gap-1">
           <Bug className="h-3.5 w-3.5 text-emerald-400" strokeWidth={2} /> +1
         </span>
@@ -128,8 +128,8 @@ export default function BugSquash() {
         <span>
           score <span className="gradient-text font-bold">{score}</span>
         </span>
-        <span className="text-muted">best {hi}</span>
-        <span className={time <= 5 && running ? "text-accent-3" : "text-muted"}>
+        <span className="text-paper/75">best {hi}</span>
+        <span className={time <= 5 && running ? "text-signal" : "text-paper/75"}>
           {time}s
         </span>
       </div>
@@ -157,15 +157,15 @@ export default function BugSquash() {
         })}
 
         {(idle || over) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-background/70 p-4 text-center backdrop-blur-sm">
+          <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-ink/90 p-4 text-center">
             {over && (
               <>
                 <p className="font-semibold">Time! Scored {score}.</p>
-                <p className="mt-1 text-xs text-muted">{verdict(score)}</p>
+                <p className="mt-1 text-xs text-paper/75">{verdict(score)}</p>
               </>
             )}
             {idle && (
-              <p className="text-xs text-muted">
+              <p className="text-xs text-paper/75">
                 The bugs won&apos;t squash themselves.
               </p>
             )}

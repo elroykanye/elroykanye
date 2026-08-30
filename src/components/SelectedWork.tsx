@@ -53,7 +53,7 @@ export default function SelectedWork() {
                   href={item.href}
                   target={item.external ? "_blank" : undefined}
                   rel={item.external ? "noreferrer" : undefined}
-                  className="inline-flex min-h-11 items-center justify-between border-t border-paper/25 pt-4 text-sm font-semibold text-clay transition-colors group-hover:text-signal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
+                  className="inline-flex min-h-11 items-center justify-between border-t border-paper/25 pt-4 text-sm font-semibold text-signal transition-colors group-hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-signal"
                 >
                   {item.linkLabel}
                   <ArrowUpRight className="h-4 w-4" aria-hidden />

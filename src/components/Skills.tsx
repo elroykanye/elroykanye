@@ -20,7 +20,7 @@ export default function Skills() {
                     key={item}
                     className="font-mono text-xs uppercase tracking-wide text-foreground/85"
                   >
-                    <span className="mr-2 text-signal">/</span>{item}
+                    <span className="mr-2 text-forest">/</span>{item}
                   </li>
                 ))}
               </ul>

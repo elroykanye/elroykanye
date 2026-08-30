@@ -111,7 +111,7 @@ export default function MemoryMatch() {
 
   return (
     <div>
-      <p className="text-center text-xs text-muted">
+      <p className="text-center text-xs text-paper/75">
         Flip cards, match the pairs in as few moves as possible.
       </p>
 
@@ -119,8 +119,8 @@ export default function MemoryMatch() {
         <span>
           moves <span className="gradient-text font-bold">{moves}</span>
         </span>
-        <span className="text-muted">best {best ?? "—"}</span>
-        <span className="text-muted">
+        <span className="text-paper/75">best {best ?? "—"}</span>
+        <span className="text-paper/75">
           {matched.length}/{PAIRS}
         </span>
       </div>
@@ -153,15 +153,15 @@ export default function MemoryMatch() {
         })}
 
         {(!started || won) && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-background/70 p-4 text-center backdrop-blur-sm">
+          <div className="absolute inset-0 flex flex-col items-center justify-center rounded-xl bg-ink/90 p-4 text-center">
             {won && (
               <>
                 <p className="font-semibold">Solved in {moves} moves!</p>
-                <p className="mt-1 text-xs text-muted">{verdict}</p>
+                <p className="mt-1 text-xs text-paper/75">{verdict}</p>
               </>
             )}
             {!started && (
-              <p className="text-xs text-muted">
+              <p className="text-xs text-paper/75">
                 Match all {PAIRS} pairs of the stack.
               </p>
             )}

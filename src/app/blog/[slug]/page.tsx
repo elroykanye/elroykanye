@@ -178,7 +178,7 @@ export default async function BlogPost({
           <div className="glass mt-10 rounded-3xl p-6 sm:p-10">
             <div
               data-post-content
-              className="prose prose-invert max-w-none prose-headings:scroll-mt-28 prose-headings:tracking-tight prose-a:text-accent-2 prose-pre:border prose-pre:border-border prose-pre:bg-black/50 prose-code:text-accent-2"
+              className="prose max-w-none prose-headings:scroll-mt-28 prose-headings:tracking-tight prose-headings:text-ink prose-p:text-foreground/85 prose-li:text-foreground/85 prose-strong:text-ink prose-a:text-forest prose-a:decoration-forest/40 prose-code:text-clay prose-pre:border prose-pre:border-border prose-pre:bg-ink prose-pre:text-paper"
             >
               <MDXRemote
                 source={post.content}

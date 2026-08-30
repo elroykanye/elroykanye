@@ -5,7 +5,7 @@ export default function Contact() {
   return (
     <section id="contact" className="scroll-mt-24 py-16 sm:py-24">
       <Reveal>
-        <div className="grid gap-10 border border-ink bg-clay p-7 text-paper sm:p-12 lg:grid-cols-[1.3fr_1fr] lg:items-end">
+        <div className="grid gap-10 border border-ink bg-ink p-7 text-paper sm:p-12 lg:grid-cols-[1.3fr_1fr] lg:items-end">
           <div>
           <p className="field-label text-signal">Field / 10 · Open channel</p>
           <h2 className="mt-4 max-w-2xl font-display text-5xl leading-[0.95] sm:text-7xl">
