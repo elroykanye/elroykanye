@@ -174,10 +174,24 @@ async function audit(selector, text) {
 }
 
 async function stopProcess(processHandle) {
-  if (!processHandle || processHandle.exitCode !== null) return;
-  const exited = new Promise((resolve) => processHandle.once("exit", resolve));
-  processHandle.kill();
-  await exited;
+  if (!processHandle) return;
+  if (processHandle.exitCode === null && process.platform === "win32") {
+    await new Promise((resolve) => {
+      const killer = spawn(
+        "taskkill",
+        ["/pid", String(processHandle.pid), "/T", "/F"],
+        { stdio: "ignore" },
+      );
+      killer.once("error", resolve);
+      killer.once("exit", resolve);
+    });
+  } else if (processHandle.exitCode === null) {
+    const exited = new Promise((resolve) => processHandle.once("exit", resolve));
+    processHandle.kill();
+    await exited;
+  }
+  processHandle.stdout?.destroy();
+  processHandle.stderr?.destroy();
 }
 
 async function waitForServer() {
@@ -196,6 +210,12 @@ async function waitForServer() {
 }
 
 before(async () => {
+  await rm(path.join(root, ".next"), {
+    recursive: true,
+    force: true,
+    maxRetries: 20,
+    retryDelay: 250,
+  });
   port = await freePort();
   baseUrl = `http://${host}:${port}`;
   server = spawn(
@@ -252,11 +272,19 @@ before(async () => {
 });
 
 after(async () => {
-  cdp?.close();
-  await stopProcess(browser);
+  if (process.platform === "win32") {
+    await stopProcess(browser);
+    cdp?.close();
+  } else if (cdp) {
+    try {
+      await cdp.send("Browser.close");
+    } catch {}
+    cdp.close();
+    await stopProcess(browser);
+  }
   await stopProcess(server);
   if (browserProfile) {
-    await rm(browserProfile, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+    await rm(browserProfile, { recursive: true, force: true, maxRetries: 20, retryDelay: 250 });
   }
 });
 
