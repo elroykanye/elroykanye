@@ -10,8 +10,8 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const host = "127.0.0.1";
-const port = 3199;
-const baseUrl = `http://${host}:${port}`;
+let port;
+let baseUrl;
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
 let server;
 let serverOutput = "";
@@ -196,6 +196,8 @@ async function waitForServer() {
 }
 
 before(async () => {
+  port = await freePort();
+  baseUrl = `http://${host}:${port}`;
   server = spawn(
     process.execPath,
     [nextBin, "dev", "--hostname", host, "--port", String(port)],
