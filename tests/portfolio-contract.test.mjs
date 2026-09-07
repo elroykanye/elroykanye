@@ -25,13 +25,20 @@ test("hero makes selected work the primary action without repeating the role", a
   assert.match(hero, /I build reliable systems/i);
 });
 
-test("selected work is backed by at least three named real projects", async () => {
+test("selected work features Vince Gate while retaining OpenRefine experience", async () => {
   const site = await read("src/lib/site.ts");
+  const selectedWork = site.slice(
+    site.indexOf("export const selectedWork"),
+    site.indexOf("export type SkillGroup"),
+  );
 
   assert.match(site, /export const selectedWork/);
-  for (const project of ["Barme", "Maayo", "OpenRefine"]) {
-    assert.match(site, new RegExp(`title:\\s*["']${project}["']`));
+  for (const project of ["Barme", "Maayo", "Vince Gate"]) {
+    assert.match(selectedWork, new RegExp(`title:\\s*["']${project}["']`));
   }
+  assert.match(selectedWork, /href:\s*["']https:\/\/github\.com\/elroykanye\/vince-gate["']/);
+  assert.doesNotMatch(selectedWork, /title:\s*["']OpenRefine["']/);
+  assert.match(site, /company:\s*["']OpenRefine["']/);
 });
 
 test("navigation exposes work and notes as first-class destinations", async () => {

@@ -87,15 +87,16 @@ export const selectedWork: SelectedWorkItem[] = [
   },
   {
     number: "03",
-    title: "OpenRefine",
-    kind: "Open-source localization",
+    title: "Vince Gate",
+    kind: "Evidence gate for coding agents",
     summary:
-      "An Outreachy contribution focused on making a mature data-cleaning tool work for more people and languages.",
+      "A portable implementer-and-reviewer toolkit that makes completion depend on reproducible proof.",
     proof:
-      "Implemented server-side localization, reviewed contributions, and worked with the community to triage critical issues while protecting an established codebase.",
-    stack: ["Java", "JavaScript", "Servlets", "Weblate"],
-    href: "#experience",
-    linkLabel: "Trace it in experience",
+      "Turns requests into confirmed contracts, requires RED, GREEN, TAMPER, and a real wire proof, then hands the diff to a fresh adversarial reviewer whose PASS is the completion gate.",
+    stack: ["Python", "Agent Skills", "TDD", "Adversarial review"],
+    href: "https://github.com/elroykanye/vince-gate",
+    linkLabel: "View repository",
+    external: true,
   },
 ];
 

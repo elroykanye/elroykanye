@@ -266,6 +266,8 @@ test("rendered homepage exposes real work evidence and three writing records", a
   const html = await response.text();
 
   assert.match(html, /href="https:\/\/github\.com\/elroykanye\/barme"/);
+  assert.match(html, /href="https:\/\/github\.com\/elroykanye\/vince-gate"/);
+  assert.match(html, />Vince Gate<\/h3>/);
   assert.match(html, /Barme: I wanted a lightweight object store/);
   const notesStart = html.indexOf('id="notes"');
   assert.notEqual(notesStart, -1, "rendered Notes section is missing");
