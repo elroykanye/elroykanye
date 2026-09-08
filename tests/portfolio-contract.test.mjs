@@ -36,7 +36,18 @@ test("selected work features Vince Gate while retaining OpenRefine experience", 
   for (const project of ["Barme", "Maayo", "Vince Gate"]) {
     assert.match(selectedWork, new RegExp(`title:\\s*["']${project}["']`));
   }
-  assert.match(selectedWork, /href:\s*["']https:\/\/github\.com\/elroykanye\/vince-gate["']/);
+  const vinceStart = selectedWork.indexOf('title: "Vince Gate"');
+  const vinceEnd = selectedWork.indexOf("\n  },", vinceStart);
+  const vince = selectedWork.slice(vinceStart, vinceEnd);
+
+  assert.match(vince, /href:\s*["']https:\/\/github\.com\/elroykanye\/vince-gate["']/);
+  assert.match(
+    vince,
+    /A portable implementer-and-reviewer toolkit that makes completion depend on reproducible proof\./,
+  );
+  assert.match(vince, /requires RED, GREEN, TAMPER, and a real wire proof/);
+  assert.match(vince, /fresh adversarial reviewer whose PASS is the completion gate/);
+  assert.match(vince, /external:\s*true/);
   assert.doesNotMatch(selectedWork, /title:\s*["']OpenRefine["']/);
   assert.match(site, /company:\s*["']OpenRefine["']/);
 });

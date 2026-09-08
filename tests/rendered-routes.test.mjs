@@ -296,6 +296,12 @@ test("rendered homepage exposes real work evidence and three writing records", a
   assert.match(html, /href="https:\/\/github\.com\/elroykanye\/barme"/);
   assert.match(html, /href="https:\/\/github\.com\/elroykanye\/vince-gate"/);
   assert.match(html, />Vince Gate<\/h3>/);
+  const vinceLink = (html.match(/<a\b[^>]*>/g) ?? []).find((tag) =>
+    tag.includes('href="https://github.com/elroykanye/vince-gate"'),
+  );
+  assert.ok(vinceLink, "rendered Vince Gate link is missing");
+  assert.match(vinceLink, /target="_blank"/);
+  assert.match(vinceLink, /rel="noreferrer"/);
   assert.match(html, /Barme: I wanted a lightweight object store/);
   const notesStart = html.indexOf('id="notes"');
   assert.notEqual(notesStart, -1, "rendered Notes section is missing");
