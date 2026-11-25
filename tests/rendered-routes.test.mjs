@@ -413,3 +413,18 @@ test("refreshed profile fits mobile, tablet and desktop widths", async () => {
   }
   await cdp.send("Emulation.clearDeviceMetricsOverride");
 });
+
+test("mentoring article is readable and discoverable through all publishing surfaces", async () => {
+  const slug = "mentoring-without-a-mentor";
+  const paths = [`/blog/${slug}`, "/blog", "/blog/series/notes-from-the-grassfields", "/feed.xml", "/sitemap.xml"];
+  const bodies = [];
+  for (const route of paths) {
+    const response = await fetch(`${baseUrl}${route}`);
+    assert.equal(response.status, 200, route);
+    bodies.push(await response.text());
+  }
+  assert.match(bodies[0], /I mentored a room full of students before anyone mentored me/);
+  assert.match(bodies[0], /No structure, just a laptop and whatever they needed/);
+  assert.match(bodies[0], /href="\/share"/);
+  for (const body of bodies.slice(1)) assert.ok(body.includes(`/blog/${slug}`));
+});
