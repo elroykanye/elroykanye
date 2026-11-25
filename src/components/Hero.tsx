@@ -15,7 +15,7 @@ export default function Hero() {
                 Available for select opportunities
               </span>
               <span className="inline-flex items-center gap-2 text-muted">
-                <MapPin className="h-3.5 w-3.5" aria-hidden /> Bamenda, Cameroon
+                <MapPin className="h-3.5 w-3.5" aria-hidden /> {siteConfig.location}
               </span>
             </div>
           </Reveal>
@@ -29,6 +29,9 @@ export default function Hero() {
           <Reveal delay={140}>
             <p className="mt-10 max-w-4xl font-display text-[clamp(2rem,4.6vw,4.8rem)] leading-[0.94] text-clay">
               I build reliable systems and the teams behind them.
+            </p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg">
+              {siteConfig.introduction}
             </p>
           </Reveal>
 

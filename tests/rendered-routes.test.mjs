@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:net";
 import os from "node:os";
 import path from "node:path";
@@ -351,4 +351,65 @@ test("rendered article, share page, and résumé remain available", async () => 
   assert.match(await share.text(), /Share your story/);
   assert.equal(resume.status, 200);
   assert.match(resume.headers.get("content-type") ?? "", /application\/pdf/);
+});
+
+test("rendered profile uses Yaoundé, approved current roles and truthful metadata", async () => {
+  await navigate(baseUrl);
+  const profile = await evaluate(`(() => {
+    const person = [...document.querySelectorAll('script[type="application/ld+json"]')]
+      .map(node => JSON.parse(node.textContent)).find(item => item['@type'] === 'Person');
+    return {
+      hero: document.querySelector('#about').innerText,
+      footer: document.querySelector('footer').innerText,
+      experience: document.querySelector('#experience').innerText,
+      body: document.body.innerText,
+      person,
+    };
+  })()`);
+  assert.match(profile.hero, /Yaoundé, Cameroon/i);
+  assert.match(profile.footer, /Yaoundé, Cameroon/i);
+  assert.doesNotMatch(profile.hero + profile.footer, /Bamenda/);
+  for (const company of ["Effulgence Tech", "SkyArc Solution FZ-LLC", "Veridyl"]) {
+    assert.ok(profile.experience.includes(company), `missing rendered role: ${company}`);
+  }
+  assert.match(profile.experience, /Maintain and improve WordPress plugins/);
+  assert.match(profile.experience, /Build AI service infrastructure and pipelines/);
+  assert.match(profile.experience, /Lead product and engineering delivery for SenaSuite/);
+  assert.equal(profile.person.address.addressLocality, "Yaoundé, Cameroon");
+  assert.deepEqual(profile.person.worksFor.map(item => item.name), [
+    "Effulgence Tech", "SkyArc Solution FZ-LLC", "Veridyl",
+  ]);
+  assert.match(profile.body, /Roles in this record/i);
+  assert.doesNotMatch(profile.body, /Teams shipped with/);
+  assert.match(profile.body, /University of Bamenda/);
+});
+
+test("refreshed profile fits mobile, tablet and desktop widths", async () => {
+  await navigate(baseUrl);
+  for (const width of [360, 390, 768, 1440]) {
+    await cdp.send("Emulation.setDeviceMetricsOverride", {
+      width, height: 900, deviceScaleFactor: 1, mobile: width < 768,
+    });
+    const dimensions = await evaluate(`({
+      viewport: window.innerWidth,
+      document: document.documentElement.scrollWidth,
+      body: document.body.scrollWidth,
+      experience: document.querySelector('#experience').getBoundingClientRect().width,
+    })`);
+    assert.ok(dimensions.document <= width, JSON.stringify({ width, ...dimensions }));
+    assert.ok(dimensions.body <= width, JSON.stringify({ width, ...dimensions }));
+    assert.ok(dimensions.experience > 0 && dimensions.experience <= width);
+    if (process.env.PORTFOLIO_SCREENSHOTS && [390, 1440].includes(width)) {
+      await evaluate(`document.fonts.ready.then(() => new Promise(resolve =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve))))`);
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      await mkdir(process.env.PORTFOLIO_SCREENSHOTS, { recursive: true });
+      const capture = await cdp.send("Page.captureScreenshot", { format: "png" });
+      await writeFile(
+        path.join(process.env.PORTFOLIO_SCREENSHOTS, `profile-${width}.png`),
+        Buffer.from(capture.data, "base64"),
+      );
+    }
+  }
+  await cdp.send("Emulation.clearDeviceMetricsOverride");
 });

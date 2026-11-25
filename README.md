@@ -4,7 +4,8 @@
 
 ### 🚀 About me
 
-- 🧑🏾‍💻 Dev with **4+ years** building scalable enterprise apps, microservices, and CI/CD platforms.
+- 🧑🏾‍💻 Software engineer and technical lead based in **Yaoundé, Cameroon**, building software since 2020.
+- 🌐 Current work: **SenaSuite at Veridyl**, backend and AI infrastructure at **SkyArc**, and WordPress integrations at **Effulgence Tech**.
 - 🛠️ I lead teams, mentor developers, and ship reliable systems across the **JVM, .NET, and modern web** stacks.
 - 📫 Reach me at **elroykanye@gmail.com** — or play the games on [elroykimbi.dev](https://elroykimbi.dev).
 
