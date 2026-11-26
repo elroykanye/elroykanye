@@ -18,7 +18,9 @@ export function personSchema() {
       "@type": "PostalAddress",
       addressLocality: siteConfig.location,
     },
-    worksFor: { "@type": "Organization", name: experience[0]?.company },
+    worksFor: experience
+      .filter((item) => item.current)
+      .map((item) => ({ "@type": "Organization", name: item.company })),
     alumniOf: education.map((e) => ({
       "@type": "EducationalOrganization",
       name: e.school,

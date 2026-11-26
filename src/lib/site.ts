@@ -8,16 +8,18 @@ export const siteConfig = {
   role: "Technical Lead & Full Stack Engineer",
   tagline:
     "I build reliable systems and the teams behind them.",
+  introduction:
+    "Technical leadership at Veridyl. Backend and AI infrastructure at SkyArc. WordPress integrations at Effulgence Tech.",
   // A more human, quirky one-liner used in the hero.
   quip: "I turn caffeine into microservices and bugs into features™.",
   summary:
-    "Technical Lead & Senior Full Stack Engineer with 4+ years of experience leading cross-functional teams and delivering scalable enterprise applications, microservices, and CI/CD solutions. Proficient across the JVM, .NET, and modern web stacks, with hands-on expertise in Docker, Kubernetes, and cloud platforms (Azure, AWS). I drive Agile delivery, mentor developers, and obsess over reliable, well-architected systems.",
+    "I lead engineering delivery for SenaSuite at Veridyl, build backend and AI service infrastructure at SkyArc, and maintain WordPress plugins and data integrations at Effulgence Tech. My work spans Kotlin and Spring Boot, C#/.NET, Python, Angular, React and Kubernetes, from planning and implementation to reviews and team coordination.",
   email: "elroykanye@gmail.com",
   phone: "+237 690 376 344",
-  location: "Bamenda, North West Region, Cameroon",
+  location: "Yaoundé, Cameroon",
   jobTitle: "Technical Lead & Full Stack Engineer",
   resumeUrl: "/resume.pdf",
-  yearsExperience: "4+",
+  yearsExperience: "6+",
   // Used for the twitter:site/twitter:creator meta tags.
   twitterHandle: "@elroykanye",
   // Paste verification tokens here after registering the domain.
@@ -145,9 +147,55 @@ export type ExperienceItem = {
   description: string;
   highlights: string[];
   stack: string[];
+  current?: boolean;
 };
 
 export const experience: ExperienceItem[] = [
+  {
+    company: "Effulgence Tech",
+    role: "Software Engineer",
+    period: "Jul 2026 — Present",
+    current: true,
+    description:
+      "WordPress plugin maintenance, data integrations and solution development.",
+    highlights: [
+      "Maintain and improve WordPress plugins.",
+      "Integrate WordPress websites with external data systems.",
+      "Plan, design and develop software solutions around business requirements.",
+    ],
+    stack: ["WordPress", "Plugin maintenance", "Data integration", "Solution design"],
+  },
+  {
+    company: "SkyArc Solution FZ-LLC",
+    role: "Software Engineer",
+    period: "Jan 2026 — Present",
+    current: true,
+    description:
+      "Backend, AI service infrastructure and full-stack development.",
+    highlights: [
+      "Backend and infrastructure with C# .NET, Python, and Kubernetes.",
+      "Design and deploy microservices and APIs.",
+      "Build AI service infrastructure and pipelines.",
+      "Frontend development with React.",
+      "Work across the full stack from infrastructure to UI.",
+    ],
+    stack: ["C#/.NET", "Python", "Kubernetes", "React", "Microservices"],
+  },
+  {
+    company: "Veridyl",
+    role: "Technical Lead",
+    period: "May 2024 — Present",
+    current: true,
+    description:
+      "Product and engineering leadership for SenaSuite’s school administration and learning platform.",
+    highlights: [
+      "Lead product and engineering delivery for SenaSuite, Veridyl’s school administration and learning platform.",
+      "Set priorities and acceptance criteria, coordinate frontend, backend and QA work, and guide product demos and school onboarding.",
+      "Guide technical work across Angular, TypeScript, Kotlin, Spring Boot, PostgreSQL and offline data synchronization.",
+      "Translate feedback from administrators, teachers, students and parents into product improvements.",
+    ],
+    stack: ["Angular", "TypeScript", "Kotlin", "Spring Boot", "PostgreSQL", "Offline sync"],
+  },
   {
     company: "Drifting Desk",
     role: "Senior Software Engineer",

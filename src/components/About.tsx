@@ -4,7 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 
 const facts = [
   { value: siteConfig.yearsExperience, label: "Years building" },
-  { value: String(experience.length), label: "Teams shipped with" },
+  { value: String(experience.length), label: "Roles in this record" },
   { value: "3", label: "Stacks: JVM · .NET · web" },
 ];
 

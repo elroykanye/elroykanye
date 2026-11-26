@@ -46,3 +46,9 @@ next-env.d.ts
 
 # local session handoff note, not part of the site
 /SESSION-SUMMARY.md
+
+# Local AI agent tooling (machine state, not part of the project)
+.claude/settings.local.json
+.serena/
+.superpowers/
+.vince/tasks/
